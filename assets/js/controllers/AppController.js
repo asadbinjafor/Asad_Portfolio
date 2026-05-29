@@ -144,9 +144,10 @@ if (typeof ScrollReveal !== 'undefined') {
 
    sr.reveal('.home__data, .home__image', { origin: 'left', interval: 200 })
    sr.reveal('.section__title', { delay: 100 })
-   sr.reveal('.about__content, .about__skill', { interval: 150 })
+   sr.reveal('.about__content, .about__skill, .about__achievement-stat', { interval: 120 })
    sr.reveal('#projects .section__title', { delay: 100, distance: '30px' })
    sr.reveal('.work__card', { interval: 150 })
+   sr.reveal('.achievements__card', { interval: 120 })
    sr.reveal('.contact__intro, .contact__group', { interval: 150 })
    sr.reveal('.footer__container')
 

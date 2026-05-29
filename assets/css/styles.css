@@ -436,6 +436,9 @@ img {
 
 .about__content {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .about__description {
@@ -443,6 +446,7 @@ img {
   margin-bottom: 1.5rem;
   max-width: 42rem;
   margin-inline: auto;
+  text-align: center;
 }
 
 .about__description b {
@@ -450,7 +454,7 @@ img {
 }
 
 .about__skills {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
@@ -478,14 +482,46 @@ img {
   font-size: var(--smaller-font-size);
 }
 
-@media screen and (min-width: 768px) {
-  .about__content {
-    text-align: left;
-  }
+.about__achievement-stats {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .85rem;
+  margin-top: .5rem;
+}
 
-  .about__description {
-    margin-inline: 0;
-  }
+.about__achievement-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+  background-color: var(--body-color);
+  border: 1px dashed var(--border-color);
+  border-radius: .65rem;
+  padding: 1rem .75rem;
+  text-align: center;
+  transition: border-color .3s, transform .3s;
+}
+
+.about__achievement-stat:hover {
+  border-color: var(--first-color);
+  transform: translateY(-2px);
+}
+
+.about__achievement-stat i {
+  font-size: 1.35rem;
+  color: var(--first-color);
+}
+
+.about__achievement-stat h4 {
+  font-size: var(--h3-font-size);
+  color: var(--title-color);
+  line-height: 1;
+}
+
+.about__achievement-stat p {
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+  line-height: 1.4;
 }
 
 /*=============== PROJECTS ===============*/
@@ -814,6 +850,175 @@ img {
   color: var(--text-color-light);
 }
 
+/*=============== ACHIEVEMENTS ===============*/
+.achievements__subtitle {
+  text-align: center;
+  max-width: 38rem;
+  margin: -1rem auto 2rem;
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+  line-height: 1.7;
+}
+
+.achievements__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .65rem;
+  margin-bottom: 2rem;
+}
+
+.achievements__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background-color: var(--container-color);
+  color: var(--title-color);
+  padding: .65rem 1rem;
+  border-radius: .5rem;
+  border: 1px solid var(--border-color);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: border-color .3s, background-color .3s, color .3s, transform .3s;
+}
+
+.achievements__tab i {
+  font-size: 1.05rem;
+  color: var(--first-color);
+  transition: color .3s;
+}
+
+.achievements__tab:hover {
+  border-color: var(--first-color);
+  transform: translateY(-1px);
+}
+
+.achievements__tab-active {
+  border-color: var(--first-color);
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.achievements__tab-active i {
+  color: var(--white-color);
+}
+
+.achievements__grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.achievements__card {
+  background-color: var(--container-color);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  transition: border-color .3s, transform .3s, opacity .3s;
+}
+
+.achievements__card:hover {
+  border-color: var(--first-color);
+  transform: translateY(-3px);
+}
+
+.achievements__card-hidden {
+  display: none;
+}
+
+.achievements__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+
+.achievements__icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: .65rem;
+  background-color: var(--body-color);
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.achievements__icon {
+  font-size: 1.25rem;
+  color: var(--first-color);
+}
+
+.achievements__meta {
+  font-size: var(--smaller-font-size);
+  color: var(--first-color-light);
+  text-align: right;
+  line-height: 1.5;
+}
+
+.achievements__title {
+  font-size: var(--h3-font-size);
+  margin-bottom: .65rem;
+  line-height: 1.35;
+}
+
+.achievements__description {
+  font-size: var(--small-font-size);
+  line-height: 1.65;
+  margin-bottom: .75rem;
+  flex-grow: 1;
+  color: var(--text-color-light);
+}
+
+.achievements__credential {
+  display: block;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+  margin-bottom: 1rem;
+}
+
+.achievements__link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: auto;
+}
+
+.button-small {
+  padding: .55rem 1rem;
+  font-size: var(--small-font-size);
+}
+
+@media screen and (min-width: 576px) {
+  .about__achievement-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .achievements__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .about__achievement-stats {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .achievements__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about__skills {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 /*=============== CONTACT ===============*/
 .contact__container {
   gap: 2.5rem;
@@ -860,17 +1065,34 @@ img {
 .contact__links {
   display: flex;
   flex-wrap: wrap;
-  gap: .75rem 1.25rem;
+  gap: .65rem;
 }
 
 .contact__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5.5rem;
+  padding: .55rem 1rem;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-medium);
   color: var(--title-color);
-  font-size: var(--small-font-size);
-  transition: color .3s;
+  background-color: hsl(240, 8%, 10%);
+  border: 1px solid var(--border-color);
+  border-radius: .5rem;
+  transition: background .3s, border-color .3s, transform .3s, box-shadow .3s;
 }
 
 .contact__link:hover {
-  color: var(--first-color);
+  color: var(--title-color);
+  background-color: var(--first-color);
+  border-color: var(--first-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px hsla(var(--hue), 60%, 40%, .25);
+}
+
+.contact__links-messaging .contact__link {
+  min-width: 6.5rem;
 }
 
 @media screen and (min-width: 768px) {
