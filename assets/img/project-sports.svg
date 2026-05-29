@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Sporting Sphere Project">
+  <defs>
+    <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#281018"/>
+      <stop offset="100%" style="stop-color:#0d0d14"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg6)"/>
+  <ellipse cx="400" cy="310" rx="180" ry="25" fill="#2a2030"/>
+  <circle cx="400" cy="200" r="55" fill="none" stroke="#e87f5e" stroke-width="4"/>
+  <path d="M400 145 L400 255 M355 200 L445 200" stroke="#e87f5e" stroke-width="4" stroke-linecap="round"/>
+  <rect x="280" y="260" width="240" height="50" rx="8" fill="#9b7fe8" opacity="0.25"/>
+  <circle cx="320" cy="285" r="12" fill="#9b7fe8"/>
+  <circle cx="400" cy="285" r="12" fill="#9b7fe8"/>
+  <circle cx="480" cy="285" r="12" fill="#9b7fe8"/>
+  <text x="400" y="410" text-anchor="middle" fill="#e8e6f0" font-family="system-ui,sans-serif" font-size="22" font-weight="600">Sporting Sphere</text>
+  <text x="400" y="435" text-anchor="middle" fill="#e87f5e" font-family="system-ui,sans-serif" font-size="14">Java � Sports Complex System</text>
+</svg>
