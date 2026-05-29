@@ -26,12 +26,12 @@
    function getSlideWidth() {
       const perView = getPerView()
       const vw = getViewportWidth()
-      return (vw - GAP * (perView - 1)) / perView
+      return Math.floor((vw - GAP * (perView - 1)) / perView)
    }
 
    function getPageWidth() {
       const perView = getPerView()
-      return getSlideWidth() * perView + GAP * (perView - 1)
+      return perView * (getSlideWidth() + GAP)
    }
 
    function setSlideSizes() {
@@ -74,7 +74,7 @@
       if (currentPage < 0) currentPage = 0
 
       setSlideSizes()
-      track.style.transform = `translate3d(-${currentPage * getPageWidth()}px, 0, 0)`
+      track.style.transform = `translate3d(-${Math.round(currentPage * getPageWidth())}px, 0, 0)`
 
       const dots = dotsContainer.querySelectorAll('.projects__dot')
       dots.forEach((dot, i) => {
