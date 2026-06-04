@@ -28,6 +28,7 @@
          })
 
          if (grid) {
+            grid.classList.toggle('achievements__grid-idle', visibleCount === 0)
             grid.classList.toggle('achievements__grid-empty', visibleCount === 0)
          }
       }
@@ -39,10 +40,8 @@
          })
       })
 
-      const activeTab = document.querySelector('.achievements__tab-active') || tabs[0]
-      if (activeTab) {
-         setActiveTab(activeTab)
-         filterCards(activeTab.dataset.filter)
+      if (grid) {
+         grid.classList.add('achievements__grid-idle')
       }
    }
 
