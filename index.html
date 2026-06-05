@@ -3,17 +3,70 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta name="description" content="Mohammad Asad Bin Jafor - CSE Student &amp; Developer Portfolio">
-   <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
+      <meta name="description" content="Portfolio of Mohammad Asad Bin Jafor — final-year CSE student at AIUB. Full-stack web developer specializing in PHP, MySQL, JavaScript, Java and C#. Projects, certifications, achievements and contact.">
+   <meta name="keywords" content="Mohammad Asad Bin Jafor, Asad Jafor, CSE portfolio, web developer, PHP developer, AIUB, full-stack developer, software engineer, Bangladesh developer, GitHub projects">
+   <meta name="author" content="Mohammad Asad Bin Jafor">
+   <meta name="robots" content="index, follow">
+   <meta name="theme-color" content="#8b6cef">
+   <link rel="canonical" href="https://asadbinjafor.github.io/Asad_Portfolio/">
+
+   <!-- Open Graph -->
+   <meta property="og:type" content="website">
+   <meta property="og:site_name" content="Asad Jafor Portfolio">
+   <meta property="og:title" content="Mohammad Asad Bin Jafor | CSE Student &amp; Developer">
+   <meta property="og:description" content="Portfolio of Mohammad Asad Bin Jafor — final-year CSE student at AIUB. Full-stack web developer specializing in PHP, MySQL, JavaScript, Java and C#. Projects, certifications, achievements and contact.">
+   <meta property="og:url" content="https://asadbinjafor.github.io/Asad_Portfolio/">
+   <meta property="og:locale" content="en_US">
+   <meta property="og:image" content="https://asadbinjafor.github.io/Asad_Portfolio/assets/img/og-image.svg">
+   <meta property="og:image:width" content="1200">
+   <meta property="og:image:height" content="630">
+   <meta property="og:image:alt" content="Mohammad Asad Bin Jafor | CSE Student &amp; Developer">
+
+   <!-- Twitter Card -->
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:title" content="Mohammad Asad Bin Jafor | CSE Student &amp; Developer">
+   <meta name="twitter:description" content="Portfolio of Mohammad Asad Bin Jafor — final-year CSE student at AIUB. Full-stack web developer specializing in PHP, MySQL, JavaScript, Java and C#. Projects, certifications, achievements and contact.">
+   <meta name="twitter:image" content="https://asadbinjafor.github.io/Asad_Portfolio/assets/img/og-image.svg">
+
+   <!-- Structured Data -->
+   <script type="application/ld+json">
+   {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mohammad Asad Bin Jafor",
+      "url": "https://asadbinjafor.github.io/Asad_Portfolio/",
+      "image": "https://asadbinjafor.github.io/Asad_Portfolio/assets/img/og-image.svg",
+      "jobTitle": "Computer Science & Engineering Student",
+      "sameAs": [
+         "https://www.linkedin.com/in/mohammadasadbinjafor/",
+         "https://github.com/asadbinjafor"
+      ]
+   }
+   </script>
+
+      <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-   <link rel="stylesheet" href="assets/css/styles.css?v=12">
-   <title>Asad Jafor - Portfolio</title>
+   <link rel="stylesheet" href="assets/css/styles.css?v=59">
+   <title>Mohammad Asad Bin Jafor | CSE Student &amp; Developer</title>
+   <script>
+      (function () {
+         var stored = localStorage.getItem('asad-portfolio-theme');
+         var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+         document.documentElement.setAttribute('data-theme', theme);
+      })();
+   </script>
    <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);
    </script>
 </head>
 <body>
+   <div class="scroll-progress" aria-hidden="true">
+      <div class="scroll-progress__bar" id="scroll-progress-bar"></div>
+   </div>
+
    <div class="cursor" id="cursor"></div>
    <div class="cursor-follower" id="cursor-follower"></div>
 
@@ -21,20 +74,41 @@
    <nav class="nav container">
       <a href="#home" class="nav__logo">Asad</a>
 
-      <div class="nav__menu" id="nav-menu">
-         <ul class="nav__list">
-                        <li><a href="#about" class="nav__link">About</a></li>
-                        <li><a href="#projects" class="nav__link">Projects</a></li>
-                        <li><a href="#achievements" class="nav__link">Achievements</a></li>
-                        <li><a href="#contact" class="nav__link">Contact</a></li>
-                     </ul>
-         <div class="nav__close" id="nav-close">
-            <i class="ri-close-line"></i>
+      <div class="nav__end">
+         <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                              <li><a href="#about" class="nav__link">About</a></li>
+                              <li><a href="#projects" class="nav__link">Projects</a></li>
+                              <li><a href="#journey" class="nav__link">Journey</a></li>
+                              <li><a href="#achievements" class="nav__link">Achievements</a></li>
+                              <li><a href="#contact" class="nav__link">Contact</a></li>
+                           </ul>
+            <div class="nav__close" id="nav-close">
+               <i class="ri-close-line"></i>
+            </div>
          </div>
-      </div>
 
-      <div class="nav__toggle" id="nav-toggle">
-         <i class="ri-menu-line"></i>
+         <div class="nav__actions">
+            <button
+               type="button"
+               class="nav__theme"
+               id="theme-toggle"
+               aria-label="Switch to light mode"
+            >
+               <span class="nav__theme-state nav__theme-state-dark">
+                  <i class="ri-moon-line" aria-hidden="true"></i>
+                  <span>Dark</span>
+               </span>
+               <span class="nav__theme-state nav__theme-state-light">
+                  <i class="ri-sun-line" aria-hidden="true"></i>
+                  <span>Light</span>
+               </span>
+            </button>
+
+            <div class="nav__toggle" id="nav-toggle">
+               <i class="ri-menu-line"></i>
+            </div>
+         </div>
       </div>
    </nav>
 </header>
@@ -49,9 +123,12 @@
             <span class="home__split" id="home-split">Passionate</span>
          </div>
          <h2 class="home__profession">
-            <span class="home__profession-1">Developer</span>
-            <span>&</span>
-            <span class="home__profession-2">Student</span>
+            <span
+               class="home__typing"
+               id="home-typing"
+               data-words="[&quot;Developer&quot;,&quot;Student&quot;,&quot;Full-Stack Enthusiast&quot;]"
+               aria-live="polite"
+            ></span><span class="home__typing-cursor" id="home-typing-cursor" aria-hidden="true"></span>
          </h2>
          <p class="home__intro">Computer Science &amp; Engineering student building modern web apps and software systems.</p>
 
@@ -69,8 +146,6 @@
                <i class="ri-instagram-fill"></i>
             </a>
                      </div>
-
-         <a href="https://drive.google.com/file/d/1UZsWxhRfGYXg-u8bhBxMTHVysRUzuBuV/view?usp=sharing" target="_blank" rel="noopener" class="button home__cv">RESUME</a>
       </div>
 
       <div class="home__image">
@@ -97,62 +172,111 @@
 
          <p class="about__description">I am a <b>Computer Science & Engineering student</b> with 122+ completed credits and hands-on experience in programming, database systems, software engineering and web technologies. I enjoy building <b>modern web applications</b>, learning new technologies and solving real-world problems through clean and efficient solutions.</p>
 
-         <a href="https://drive.google.com/file/d/1UZsWxhRfGYXg-u8bhBxMTHVysRUzuBuV/view?usp=sharing" target="_blank" rel="noopener" class="button">Resume</a>
+         <div class="about__resume-actions">
+            <a
+               href="https://drive.google.com/file/d/1UZsWxhRfGYXg-u8bhBxMTHVysRUzuBuV/view?usp=sharing"
+               target="_blank"
+               rel="noopener"
+               class="button about__resume-btn"
+            >
+               <i class="ri-file-search-line" aria-hidden="true"></i>
+               Preview PDF
+            </a>
+            <a
+               href="https://drive.google.com/uc?export=download&amp;id=1UZsWxhRfGYXg-u8bhBxMTHVysRUzuBuV"
+               target="_blank"
+               rel="noopener"
+               class="button about__resume-btn about__resume-btn-alt"
+            >
+               <i class="ri-download-line" aria-hidden="true"></i>
+               Download Resume
+            </a>
+         </div>
 
       </div>
 
 
 
-      <div class="about__skills grid">
+      <div class="about__skills grid" id="about-stats">
 
-         
-         <div class="about__skill">
-
+                                    <a href="#journey" class="about__skill about__skill--link about__stat-journey" data-journey-mode="credits" data-stat-key="122+">
             <h3>122+</h3>
-
             <p>Credits Completed</p>
-
-         </div>
-
-         
-         <div class="about__skill">
-
+         </a>
+                                             <a href="#projects" class="about__skill about__skill--link">
             <h3>14+</h3>
-
             <p>Projects Built</p>
-
-         </div>
-
-         
-         <div class="about__skill">
-
+         </a>
+                                             <a href="#achievements" class="about__skill about__skill--link">
             <h3>23+</h3>
-
             <p>Achievements &amp; Activities</p>
-
-         </div>
-
-         
-         <div class="about__skill">
-
+         </a>
+                                             <a href="#journey" class="about__skill about__skill--link about__stat-journey" data-journey-mode="year" data-stat-key="11th" data-journey-year="2026" data-journey-focus="semester-11">
             <h3>11th</h3>
-
             <p>Semester at AIUB</p>
-
-         </div>
-
-         
+         </a>
+                  
       </div>
 
    </div>
 
 </section>
-
 <section class="projects section" id="projects">
    <div class="projects__container container">
       <h2 class="section__title">
          <span>Projects</span>
       </h2>
+
+      <div class="projects__filters" id="projects-filters" role="tablist" aria-label="Filter projects by category">
+                           <button
+            type="button"
+            class="projects__filter projects__filter-active"
+            data-filter="all"
+            role="tab"
+            aria-selected="true"
+         >
+            All         </button>
+                           <button
+            type="button"
+            class="projects__filter"
+            data-filter="web"
+            role="tab"
+            aria-selected="false"
+         >
+            Web         </button>
+                           <button
+            type="button"
+            class="projects__filter"
+            data-filter="java"
+            role="tab"
+            aria-selected="false"
+         >
+            Java         </button>
+                           <button
+            type="button"
+            class="projects__filter"
+            data-filter="database"
+            role="tab"
+            aria-selected="false"
+         >
+            Database         </button>
+                           <button
+            type="button"
+            class="projects__filter"
+            data-filter="graphics"
+            role="tab"
+            aria-selected="false"
+         >
+            Graphics         </button>
+                           <button
+            type="button"
+            class="projects__filter"
+            data-filter="software"
+            role="tab"
+            aria-selected="false"
+         >
+            Software         </button>
+               </div>
 
       <div class="projects__slider" id="projects-carousel">
          <button type="button" id="projects-prev-btn" class="projects__button" aria-label="Previous projects">
@@ -161,7 +285,14 @@
 
          <div class="projects__viewport" id="projects-viewport">
             <div class="projects__track" id="projects-track">
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="web"
+                  data-project-id="01"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Online Mobile Shop Management"
+               >
                   <img src="assets/img/project-mobile-shop.svg" alt="Online Mobile Shop Management" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">01</span>
@@ -169,12 +300,29 @@
                      <h3 class="projects__title">Online Mobile <br> Shop Management</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">HTML, CSS, JavaScript, PHP, MySQL, Git &amp; GitHub.</p>
-                     <a href="https://github.com/asadbinjafor/Mobile_Shop" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="01">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/Mobile_Shop"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="web"
+                  data-project-id="02"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Online Computer Shop"
+               >
                   <img src="assets/img/project-computer-shop.svg" alt="Online Computer Shop" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">02</span>
@@ -182,12 +330,29 @@
                      <h3 class="projects__title">Online Computer <br> Shop</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">HTML, CSS, JavaScript, PHP, MySQL, e-commerce features, Git &amp; GitHub.</p>
-                     <a href="https://github.com/asadbinjafor/ONLINE_COMPUTER_SHOP" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="02">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/ONLINE_COMPUTER_SHOP"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="web"
+                  data-project-id="03"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Online Book Store"
+               >
                   <img src="assets/img/project-book-store.svg" alt="Online Book Store" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">03</span>
@@ -195,12 +360,29 @@
                      <h3 class="projects__title">Online Book <br> Store</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">HTML, CSS, JavaScript, PHP, MySQL, online bookstore system, Git &amp; GitHub.</p>
-                     <a href="https://github.com/asadbinjafor/ONLINE_BOOK_STORE" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="03">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/ONLINE_BOOK_STORE"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="web"
+                  data-project-id="04"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Online Car Rent System"
+               >
                   <img src="assets/img/project-car-rent.svg" alt="Online Car Rent System" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">04</span>
@@ -208,12 +390,29 @@
                      <h3 class="projects__title">Online Car <br> Rent System</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">HTML, CSS, JavaScript, PHP, MySQL, vehicle rental management, Git &amp; GitHub.</p>
-                     <a href="https://github.com/asadbinjafor/ONLINE_CAR_RENT" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="04">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/ONLINE_CAR_RENT"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="web"
+                  data-project-id="05"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Online Food Blog"
+               >
                   <img src="assets/img/project-food-blog.svg" alt="Online Food Blog" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">05</span>
@@ -221,12 +420,29 @@
                      <h3 class="projects__title">Online Food <br> Blog</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">HTML, CSS, JavaScript, PHP, MySQL, recipe &amp; blog platform, Git &amp; GitHub.</p>
-                     <a href="https://github.com/asadbinjafor/ONLINE_FOOD_BLOG" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="05">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/ONLINE_FOOD_BLOG"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="web"
+                  data-project-id="06"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Travel Guide"
+               >
                   <img src="assets/img/project-travel.svg" alt="Travel Guide Web Application" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">06</span>
@@ -234,12 +450,29 @@
                      <h3 class="projects__title">Travel <br> Guide</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">HTML, CSS, JavaScript, PHP, MySQL, travel information system, Git &amp; GitHub.</p>
-                     <a href="https://github.com/asadbinjafor/TRAVEL_GUIDE" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="06">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/TRAVEL_GUIDE"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="web"
+                  data-project-id="07"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Online Clothing Brand"
+               >
                   <img src="assets/img/project-clothing.svg" alt="Online Clothing Brand" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">07</span>
@@ -247,12 +480,29 @@
                      <h3 class="projects__title">Online Clothing <br> Brand</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">HTML, CSS, JavaScript, responsive design, Git &amp; GitHub.</p>
-                     <a href="https://github.com/asadbinjafor/ONLINE_CLOTHING_BRAND" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="07">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/ONLINE_CLOTHING_BRAND"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="web"
+                  data-project-id="08"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Online Medical Shop"
+               >
                   <img src="assets/img/project-medical.svg" alt="Online Medical Shop" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">08</span>
@@ -260,12 +510,29 @@
                      <h3 class="projects__title">Online Medical <br> Shop</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">HTML, CSS, JavaScript, PHP, web technologies, Git &amp; GitHub.</p>
-                     <a href="https://github.com/asadbinjafor/Online-Medical-Shop-Web-Tech" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="08">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/Online-Medical-Shop-Web-Tech"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="web"
+                  data-project-id="09"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for FTP Server Web Tech"
+               >
                   <img src="assets/img/project-ftp.svg" alt="FTP Server Web Tech Project" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">09</span>
@@ -273,12 +540,29 @@
                      <h3 class="projects__title">FTP Server <br> Web Tech</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">HTML, CSS, JavaScript, PHP, FTP server integration, Git &amp; GitHub.</p>
-                     <a href="https://github.com/asadbinjafor/FTP_SERVER_WEB_TECH" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="09">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/FTP_SERVER_WEB_TECH"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="graphics"
+                  data-project-id="10"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for 3D City, Castle &amp; Village Simulation"
+               >
                   <img src="assets/img/project-3d.svg" alt="3D Simulation OpenGL" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">10</span>
@@ -286,12 +570,29 @@
                      <h3 class="projects__title">3D City, Castle <br> & Village Simulation</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">C++, OpenGL, GLUT — interactive 3D environments with animation.</p>
-                     <a href="https://github.com/asadbinjafor/Interactive-3D-Simulation-of-City-Castle-and-Village-Environments-Using-Computer-Graphics" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="10">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/Interactive-3D-Simulation-of-City-Castle-and-Village-Environments-Using-Computer-Graphics"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="software"
+                  data-project-id="11"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for AgriTech Village Management System"
+               >
                   <img src="assets/img/project-agritech.svg" alt="AgriTech Village Management" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">11</span>
@@ -299,12 +600,29 @@
                      <h3 class="projects__title">AgriTech Village <br> Management System</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">.NET Framework, C#, OOP — digital platform for farm management.</p>
-                     <a href="https://github.com/asadbinjafor/AgriTech-Village-Management-System-OOP2" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="11">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/AgriTech-Village-Management-System-OOP2"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="java"
+                  data-project-id="12"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Sporting Sphere Complex"
+               >
                   <img src="assets/img/project-sports.svg" alt="Sporting Sphere Complex" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">12</span>
@@ -312,12 +630,29 @@
                      <h3 class="projects__title">Sporting Sphere <br> Complex</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">Java, OOP — multi-sport facility bookings, members and schedules.</p>
-                     <a href="https://github.com/asadbinjafor/JAVA-PROJECT--Sporting-Sphere-complex" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="12">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/JAVA-PROJECT--Sporting-Sphere-complex"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="database"
+                  data-project-id="13"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Course Management System"
+               >
                   <img src="assets/img/project-course.svg" alt="Course Management System" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">13</span>
@@ -325,12 +660,29 @@
                      <h3 class="projects__title">Course Management <br> System</h3>
                      <p class="projects__subtitle">Technologies used</p>
                      <p class="projects__description">Oracle SQL Express, MySQL — students, courses, grades, schedules.</p>
-                     <a href="https://github.com/asadbinjafor/SQL-COURSE-MANAGEMENT-SYSTEM-PROJECT" target="_blank" rel="noopener" class="projects__link">
-                        View on GitHub <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="13">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor/SQL-COURSE-MANAGEMENT-SYSTEM-PROJECT"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           View on GitHub <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
-                              <article class="projects__card projects__slide">
+                              <article
+                  class="projects__card projects__slide projects__slide--clickable"
+                  data-category="github"
+                  data-project-id="14"
+                  role="button"
+                  tabindex="0"
+                  aria-label="View details for Academic Project Collection"
+               >
                   <img src="assets/img/project-github.svg" alt="All projects on GitHub" class="projects__img">
                   <div class="projects__data">
                      <span class="projects__number">14</span>
@@ -338,9 +690,19 @@
                      <h3 class="projects__title">More Projects <br> On GitHub</h3>
                      <p class="projects__subtitle">Explore all repositories</p>
                      <p class="projects__description">See all my academic and personal projects in one place.</p>
-                     <a href="https://github.com/asadbinjafor?tab=repositories" target="_blank" rel="noopener" class="projects__link">
-                        All Repositories <i class="ri-arrow-right-up-line"></i>
-                     </a>
+                     <div class="projects__actions">
+                        <button type="button" class="projects__details-btn" data-project-id="14">
+                           View Details <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        </button>
+                                                <a
+                           href="https://github.com/asadbinjafor?tab=repositories"
+                           target="_blank"
+                           rel="noopener"
+                           class="projects__link projects__github-link"
+                        >
+                           All Repositories <i class="ri-github-line" aria-hidden="true"></i>
+                        </a>
+                                             </div>
                   </div>
                </article>
                            </div>
@@ -353,7 +715,55 @@
 
       <p class="projects__counter" id="projects-counter">01-02 / 14</p>
       <div class="projects__dots" id="projects-dots"></div>
-      <p class="projects__hint">use arrows</p>
+      <p class="projects__hint">Click a project card for full details</p>
+   </div>
+
+      <script type="application/json" id="projects-modal-data">[{"id":"01","plain_title":"Online Mobile Shop Management","category":"Web","image":"assets\/img\/project-mobile-shop.svg","image_alt":"Online Mobile Shop Management","features":["Product catalog with brand and model filters","Admin dashboard for stock and sales tracking","Customer order management with invoice generation","Secure login for admin and staff roles"],"tech_stack":["PHP","MySQL","JavaScript","HTML","CSS"],"challenges":["Designing normalized database schema for inventory","Building responsive UI for mobile-first shopping flow","Implementing secure session-based authentication"],"github_url":"https:\/\/github.com\/asadbinjafor\/Mobile_Shop","link_text":"View on GitHub"},{"id":"02","plain_title":"Online Computer Shop","category":"Web","image":"assets\/img\/project-computer-shop.svg","image_alt":"Online Computer Shop","features":["E-commerce catalog for computer parts and accessories","Shopping cart and checkout workflow","Admin panel for product and order management","Category-based product browsing"],"tech_stack":["PHP","MySQL","JavaScript","Bootstrap","HTML"],"challenges":["Managing complex product attributes and pricing","Creating reusable PHP components for CRUD operations","Optimizing MySQL queries for large product lists"],"github_url":"https:\/\/github.com\/asadbinjafor\/ONLINE_COMPUTER_SHOP","link_text":"View on GitHub"},{"id":"03","plain_title":"Online Book Store","category":"Web","image":"assets\/img\/project-book-store.svg","image_alt":"Online Book Store","features":["Book catalog with author and genre filters","User registration and order history","Admin tools for inventory and publisher management","Search and sort functionality"],"tech_stack":["PHP","MySQL","JavaScript","HTML","CSS"],"challenges":["Structuring relational data for books, authors and orders","Implementing dynamic search without heavy page reloads","Ensuring form validation across checkout steps"],"github_url":"https:\/\/github.com\/asadbinjafor\/ONLINE_BOOK_STORE","link_text":"View on GitHub"},{"id":"04","plain_title":"Online Car Rent System","category":"Web","image":"assets\/img\/project-car-rent.svg","image_alt":"Online Car Rent System","features":["Vehicle listing with availability calendar","Online booking and rental duration selection","Admin management for fleet and reservations","Customer profile and rental history"],"tech_stack":["PHP","MySQL","JavaScript","HTML","CSS"],"challenges":["Handling date overlap logic for vehicle availability","Building intuitive booking flow for non-technical users","Designing admin reports for rental revenue tracking"],"github_url":"https:\/\/github.com\/asadbinjafor\/ONLINE_CAR_RENT","link_text":"View on GitHub"},{"id":"05","plain_title":"Online Food Blog","category":"Web","image":"assets\/img\/project-food-blog.svg","image_alt":"Online Food Blog","features":["Recipe posts with categories and tags","Image-rich content layout for food photography","Comment and rating system for recipes","Admin CMS for publishing and editing posts"],"tech_stack":["PHP","MySQL","JavaScript","HTML","CSS"],"challenges":["Designing content hierarchy for recipes and categories","Managing file uploads for recipe images","Creating readable typography-focused UI"],"github_url":"https:\/\/github.com\/asadbinjafor\/ONLINE_FOOD_BLOG","link_text":"View on GitHub"},{"id":"06","plain_title":"Travel Guide","category":"Web","image":"assets\/img\/project-travel.svg","image_alt":"Travel Guide Web Application","features":["Destination guides with photos and descriptions","Category filters by region and travel type","User reviews and travel tips section","Admin panel for content management"],"tech_stack":["PHP","MySQL","JavaScript","HTML","CSS"],"challenges":["Organizing large amounts of travel content efficiently","Building filter system for multi-criteria search","Balancing visual design with fast page load"],"github_url":"https:\/\/github.com\/asadbinjafor\/TRAVEL_GUIDE","link_text":"View on GitHub"},{"id":"07","plain_title":"Online Clothing Brand","category":"Web","image":"assets\/img\/project-clothing.svg","image_alt":"Online Clothing Brand","features":["Responsive fashion storefront layout","Product gallery with size and color variants","Brand-focused landing sections and lookbook UI","Mobile-optimized navigation and cart preview"],"tech_stack":["HTML","CSS","JavaScript","Responsive Design"],"challenges":["Achieving pixel-perfect responsive design across devices","Creating smooth CSS animations without frameworks","Maintaining visual consistency for brand identity"],"github_url":"https:\/\/github.com\/asadbinjafor\/ONLINE_CLOTHING_BRAND","link_text":"View on GitHub"},{"id":"08","plain_title":"Online Medical Shop","category":"Web","image":"assets\/img\/project-medical.svg","image_alt":"Online Medical Shop","features":["Pharmacy product catalog with categories","Prescription and OTC product browsing","Admin inventory and order management","Customer account and order tracking"],"tech_stack":["PHP","MySQL","JavaScript","HTML","CSS"],"challenges":["Categorizing medical products with strict data accuracy","Implementing secure user data handling","Designing trustworthy healthcare-oriented UI"],"github_url":"https:\/\/github.com\/asadbinjafor\/Online-Medical-Shop-Web-Tech","link_text":"View on GitHub"},{"id":"09","plain_title":"FTP Server Web Tech","category":"Web","image":"assets\/img\/project-ftp.svg","image_alt":"FTP Server Web Tech Project","features":["Web-based FTP file upload and download interface","User authentication and directory permissions","File manager with folder navigation","Server connection status and activity logging"],"tech_stack":["PHP","FTP","JavaScript","HTML","CSS"],"challenges":["Integrating PHP with FTP protocol securely","Handling file transfer errors and edge cases","Building intuitive file browser on top of FTP backend"],"github_url":"https:\/\/github.com\/asadbinjafor\/FTP_SERVER_WEB_TECH","link_text":"View on GitHub"},{"id":"10","plain_title":"3D City, Castle \u0026 Village Simulation","category":"Graphics","image":"assets\/img\/project-3d.svg","image_alt":"3D Simulation OpenGL","features":["Interactive 3D city, castle and village environments","Camera movement and object animation","Lighting and texture mapping with OpenGL","Modular scene composition for different maps"],"tech_stack":["C++","OpenGL","GLUT","Computer Graphics"],"challenges":["Optimizing 3D rendering performance in real time","Implementing camera controls and collision basics","Managing complex OpenGL state and coordinate systems"],"github_url":"https:\/\/github.com\/asadbinjafor\/Interactive-3D-Simulation-of-City-Castle-and-Village-Environments-Using-Computer-Graphics","link_text":"View on GitHub"},{"id":"11","plain_title":"AgriTech Village Management System","category":"Software","image":"assets\/img\/project-agritech.svg","image_alt":"AgriTech Village Management","features":["Farm and crop record management dashboard","Farmer profiles and land allocation tracking","Inventory for seeds, tools and harvest data","OOP-based modular .NET architecture"],"tech_stack":["C#",".NET","OOP","Windows Forms"],"challenges":["Applying OOP principles across multiple system modules","Designing class hierarchies for agricultural entities","Ensuring data consistency across farm operations"],"github_url":"https:\/\/github.com\/asadbinjafor\/AgriTech-Village-Management-System-OOP2","link_text":"View on GitHub"},{"id":"12","plain_title":"Sporting Sphere Complex","category":"Java","image":"assets\/img\/project-sports.svg","image_alt":"Sporting Sphere Complex","features":["Multi-sport facility booking system","Member registration and schedule management","Court and equipment availability tracking","Java OOP with class-based domain modeling"],"tech_stack":["Java","OOP","Swing","MySQL"],"challenges":["Modeling real-world sports facility entities in Java","Implementing booking conflict detection logic","Connecting Java application with database layer"],"github_url":"https:\/\/github.com\/asadbinjafor\/JAVA-PROJECT--Sporting-Sphere-complex","link_text":"View on GitHub"},{"id":"13","plain_title":"Course Management System","category":"Database","image":"assets\/img\/project-course.svg","image_alt":"Course Management System","features":["Student, course and enrollment management","Grade and schedule tracking per semester","Faculty assignment and department records","Reporting with Oracle SQL and MySQL support"],"tech_stack":["Oracle SQL","MySQL","Database Design","SQL"],"challenges":["Designing normalized schema for academic records","Writing complex SQL joins for enrollment reports","Ensuring referential integrity across multiple tables"],"github_url":"https:\/\/github.com\/asadbinjafor\/SQL-COURSE-MANAGEMENT-SYSTEM-PROJECT","link_text":"View on GitHub"},{"id":"14","plain_title":"Academic Project Collection","category":"GitHub","image":"assets\/img\/project-github.svg","image_alt":"All projects on GitHub","features":["14+ full-stack and academic software projects","Web, Java, C#, database and graphics domains","Semester-wise project progression from OOP to ML","Consistent MVC and modular coding practices"],"tech_stack":["PHP","MySQL","Java","C#","C++"],"challenges":["Maintaining code quality across diverse tech stacks","Delivering production-ready projects under semester deadlines","Learning new frameworks and tools per project requirement"],"github_url":"https:\/\/github.com\/asadbinjafor?tab=repositories","link_text":"All Repositories"}]</script>
+
+   <div class="project-modal" id="project-modal" hidden aria-hidden="true">
+      <div class="project-modal__backdrop" data-modal-close></div>
+      <div
+         class="project-modal__dialog"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="project-modal-title"
+      >
+         <button type="button" class="project-modal__close" data-modal-close aria-label="Close project details">
+            <i class="ri-close-line" aria-hidden="true"></i>
+         </button>
+
+         <div class="project-modal__hero">
+            <img src="" alt="" class="project-modal__img" id="project-modal-img">
+            <div class="project-modal__hero-overlay">
+               <span class="project-modal__category" id="project-modal-category"></span>
+               <h3 class="project-modal__title" id="project-modal-title"></h3>
+            </div>
+         </div>
+
+         <div class="project-modal__body">
+            <section class="project-modal__section">
+               <h4 class="project-modal__section-title"><i class="ri-star-line" aria-hidden="true"></i> Features</h4>
+               <ul class="project-modal__list" id="project-modal-features"></ul>
+            </section>
+
+            <section class="project-modal__section">
+               <h4 class="project-modal__section-title"><i class="ri-code-box-line" aria-hidden="true"></i> Technologies</h4>
+               <div class="project-modal__tags" id="project-modal-tech"></div>
+            </section>
+
+            <section class="project-modal__section">
+               <h4 class="project-modal__section-title"><i class="ri-lightbulb-line" aria-hidden="true"></i> Challenges</h4>
+               <ul class="project-modal__list" id="project-modal-challenges"></ul>
+            </section>
+
+            <div class="project-modal__footer" id="project-modal-footer" hidden>
+               <a href="" class="project-modal__github" id="project-modal-github" target="_blank" rel="noopener">
+                  <i class="ri-github-fill" aria-hidden="true"></i>
+                  <span id="project-modal-github-text">View on GitHub</span>
+               </a>
+            </div>
+         </div>
+      </div>
    </div>
 </section>
 <section class="work section" id="work">
@@ -385,6 +795,720 @@
             <p class="work__description">Science group graduate with solid academic results and early interest in technology and problem solving.</p>
          </article>
                </div>
+   </div>
+</section>
+<section class="journey section" id="journey">
+   <div class="journey__container container">
+      <h2 class="section__title">
+         <span>Developer</span> <br> Journey      </h2>
+
+            <p class="journey__subtitle">From learning programming fundamentals to building real-world web applications — one click per category.</p>
+      
+      <div class="journey__tabs" role="tablist" aria-label="Journey by year">
+                  <button
+            type="button"
+            class="journey__tab"
+            role="tab"
+            data-year="2026"
+            aria-selected="false"
+         >
+            2026         </button>
+                  <button
+            type="button"
+            class="journey__tab"
+            role="tab"
+            data-year="2025"
+            aria-selected="false"
+         >
+            2025         </button>
+                  <button
+            type="button"
+            class="journey__tab"
+            role="tab"
+            data-year="2024"
+            aria-selected="false"
+         >
+            2024         </button>
+                  <button
+            type="button"
+            class="journey__tab"
+            role="tab"
+            data-year="2023"
+            aria-selected="false"
+         >
+            2023         </button>
+                  <button
+            type="button"
+            class="journey__tab"
+            role="tab"
+            data-year="school"
+            aria-selected="false"
+         >
+            School &amp; College         </button>
+               </div>
+
+      <div class="journey__grid journey__grid-idle" id="journey-grid">
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2026"
+            data-term="semester-10"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--project">
+                  <i class="ri-code-box-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 10</span>
+                           </div>
+
+            <h3 class="journey__card-title">Systems &amp; Web Technologies</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Operating System</li>
+                                          <li>Compiler Design</li>
+                                          <li>Web Technologies</li>
+                                       </ul>
+               </div>
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Projects</h4>
+                  <ul class="journey__highlights">
+                                          <li>Online Medical Shop</li>
+                                          <li>Online Clothing Brand</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                        <div class="journey__tech-tags">
+                              <span class="journey__tech-tag">PHP</span>
+                              <span class="journey__tech-tag">MySQL</span>
+                              <span class="journey__tech-tag">JavaScript</span>
+                           </div>
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2026"
+            data-term="semester-11"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--project">
+                  <i class="ri-code-box-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 11 · Current</span>
+                           </div>
+
+            <h3 class="journey__card-title">ML &amp; Advanced Web Systems</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Machine Learning</li>
+                                          <li>Advanced Web Technology</li>
+                                          <li>Advanced DBMS</li>
+                                       </ul>
+               </div>
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Projects</h4>
+                  <ul class="journey__highlights">
+                                          <li>FTP Server Web Tech</li>
+                                          <li>Online Mobile Shop Management</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                        <div class="journey__tech-tags">
+                              <span class="journey__tech-tag">PHP</span>
+                              <span class="journey__tech-tag">MySQL</span>
+                              <span class="journey__tech-tag">Web Tech</span>
+                           </div>
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden journey__card--snapshot"
+            data-year="2026"
+                     >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--snapshot">
+                  <i class="ri-focus-3-line journey__icon" aria-hidden="true"></i>
+               </span>
+                           </div>
+
+            <h3 class="journey__card-title">2026 Snapshot</h3>
+
+                        <div class="journey__snapshot-metrics">
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🚀</span>
+                  <span class="journey__snapshot-value">4</span>
+                  <span class="journey__snapshot-label">Projects</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🏆</span>
+                  <span class="journey__snapshot-value">8</span>
+                  <span class="journey__snapshot-label">Achievements</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">📜</span>
+                  <span class="journey__snapshot-value">6</span>
+                  <span class="journey__snapshot-label">Certificates</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🎤</span>
+                  <span class="journey__snapshot-value">2</span>
+                  <span class="journey__snapshot-label">Seminars</span>
+               </div>
+                           </div>
+            
+                        <div class="journey__key-highlight">
+               <span class="journey__key-highlight-label">Key Highlight</span>
+               <p class="journey__key-highlight-text">Built Portfolio Website &amp; Medical Shop System</p>
+            </div>
+            
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2025"
+            data-term="semester-7"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--project">
+                  <i class="ri-code-box-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 7</span>
+                           </div>
+
+            <h3 class="journey__card-title">Algorithms &amp; OOP 2</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Algorithms</li>
+                                          <li>Microprocessor &amp; Embedded Systems</li>
+                                          <li>OOP 2</li>
+                                       </ul>
+               </div>
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Projects</h4>
+                  <ul class="journey__highlights">
+                                          <li>Online Computer Shop</li>
+                                          <li>Online Book Store</li>
+                                          <li>Travel Guide</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                        <div class="journey__tech-tags">
+                              <span class="journey__tech-tag">PHP</span>
+                              <span class="journey__tech-tag">MySQL</span>
+                              <span class="journey__tech-tag">JavaScript</span>
+                           </div>
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2025"
+            data-term="semester-8"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--project">
+                  <i class="ri-code-box-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 8</span>
+                           </div>
+
+            <h3 class="journey__card-title">AI, Graphics &amp; Data Comm.</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Artificial Intelligence</li>
+                                          <li>Computer Graphics</li>
+                                          <li>Data Communication</li>
+                                       </ul>
+               </div>
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Projects</h4>
+                  <ul class="journey__highlights">
+                                          <li>Mobile Shop</li>
+                                          <li>AgriTech Village</li>
+                                          <li>3D OpenGL Simulation</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                        <div class="journey__tech-tags">
+                              <span class="journey__tech-tag">PHP</span>
+                              <span class="journey__tech-tag">C#</span>
+                              <span class="journey__tech-tag">OpenGL</span>
+                           </div>
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2025"
+            data-term="semester-9"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--semester">
+                  <i class="ri-graduation-cap-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 9</span>
+                           </div>
+
+            <h3 class="journey__card-title">Software Engineering &amp; Theory</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Software Engineering</li>
+                                          <li>Theory of Computation</li>
+                                          <li>Computer Networks</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden journey__card--snapshot"
+            data-year="2025"
+                     >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--snapshot">
+                  <i class="ri-focus-3-line journey__icon" aria-hidden="true"></i>
+               </span>
+                           </div>
+
+            <h3 class="journey__card-title">2025 Snapshot</h3>
+
+                        <div class="journey__snapshot-metrics">
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🚀</span>
+                  <span class="journey__snapshot-value">7</span>
+                  <span class="journey__snapshot-label">Projects</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🏆</span>
+                  <span class="journey__snapshot-value">10</span>
+                  <span class="journey__snapshot-label">Achievements</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">📜</span>
+                  <span class="journey__snapshot-value">8</span>
+                  <span class="journey__snapshot-label">Certificates</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🎤</span>
+                  <span class="journey__snapshot-value">4</span>
+                  <span class="journey__snapshot-label">Events</span>
+               </div>
+                           </div>
+            
+                        <div class="journey__key-highlight">
+               <span class="journey__key-highlight-label">Key Highlight</span>
+               <p class="journey__key-highlight-text">C# OOP AgriTech Project &amp; DevOps with AWS Certification</p>
+            </div>
+            
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2024"
+            data-term="semester-4"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--semester">
+                  <i class="ri-graduation-cap-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 4</span>
+                           </div>
+
+            <h3 class="journey__card-title">Data Structures &amp; Database</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Data Structure</li>
+                                          <li>Introduction to Database</li>
+                                          <li>Electrical Circuits</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2024"
+            data-term="semester-5"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--semester">
+                  <i class="ri-graduation-cap-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 5</span>
+                           </div>
+
+            <h3 class="journey__card-title">OOAD &amp; Electronic Devices</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Object Oriented Analysis &amp; Design</li>
+                                          <li>Computational Statistics</li>
+                                          <li>Electronic Devices</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2024"
+            data-term="semester-6"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--project">
+                  <i class="ri-code-box-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 6</span>
+                           </div>
+
+            <h3 class="journey__card-title">Digital Logic &amp; Numerical Methods</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Digital Logic &amp; Circuits</li>
+                                          <li>Numerical Methods</li>
+                                          <li>Computer Aided Design</li>
+                                       </ul>
+               </div>
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Projects</h4>
+                  <ul class="journey__highlights">
+                                          <li>Course Management System</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                        <div class="journey__tech-tags">
+                              <span class="journey__tech-tag">Oracle SQL</span>
+                              <span class="journey__tech-tag">MySQL</span>
+                           </div>
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden journey__card--snapshot"
+            data-year="2024"
+                     >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--snapshot">
+                  <i class="ri-focus-3-line journey__icon" aria-hidden="true"></i>
+               </span>
+                           </div>
+
+            <h3 class="journey__card-title">2024 Snapshot</h3>
+
+                        <div class="journey__snapshot-metrics">
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🚀</span>
+                  <span class="journey__snapshot-value">2</span>
+                  <span class="journey__snapshot-label">Projects</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🏆</span>
+                  <span class="journey__snapshot-value">6</span>
+                  <span class="journey__snapshot-label">Achievements</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">📜</span>
+                  <span class="journey__snapshot-value">4</span>
+                  <span class="journey__snapshot-label">Certificates</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🎤</span>
+                  <span class="journey__snapshot-value">2</span>
+                  <span class="journey__snapshot-label">Events</span>
+               </div>
+                           </div>
+            
+                        <div class="journey__key-highlight">
+               <span class="journey__key-highlight-label">Key Highlight</span>
+               <p class="journey__key-highlight-text">Course Management System &amp; CS FEST 2024</p>
+            </div>
+            
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2023"
+            data-term="semester-1"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--semester">
+                  <i class="ri-graduation-cap-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 1</span>
+                           </div>
+
+            <h3 class="journey__card-title">Started CSE at AIUB</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Introduction to Programming</li>
+                                          <li>Diff. Calculus &amp; Coordinate Geometry</li>
+                                          <li>Physics 1 Lab</li>
+                                       </ul>
+               </div>
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Achievements</h4>
+                  <ul class="journey__highlights">
+                                          <li>Science Poster Contest 2022 — Volunteer</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2023"
+            data-term="semester-2"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--semester">
+                  <i class="ri-graduation-cap-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 2</span>
+                           </div>
+
+            <h3 class="journey__card-title">Mathematics Foundation</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Discrete Mathematics</li>
+                                          <li>Integral Calculus &amp; ODE</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="2023"
+            data-term="semester-3"         >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--project">
+                  <i class="ri-code-box-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">Semester 3</span>
+                           </div>
+
+            <h3 class="journey__card-title">Java OOP Foundation</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Core Courses</h4>
+                  <ul class="journey__highlights">
+                                          <li>Object Oriented Programming 1 (Java)</li>
+                                          <li>Complex Variable &amp; Laplace Transform</li>
+                                          <li>Principles of Accounting</li>
+                                       </ul>
+               </div>
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Java Project</h4>
+                  <ul class="journey__highlights">
+                                          <li>Sporting Sphere Complex</li>
+                                       </ul>
+               </div>
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Certifications</h4>
+                  <ul class="journey__highlights">
+                                          <li>Cisco IT Essentials (2023)</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                        <div class="journey__tech-tags">
+                              <span class="journey__tech-tag">Java</span>
+                              <span class="journey__tech-tag">OOP</span>
+                           </div>
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden journey__card--snapshot"
+            data-year="2023"
+                     >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--snapshot">
+                  <i class="ri-focus-3-line journey__icon" aria-hidden="true"></i>
+               </span>
+                           </div>
+
+            <h3 class="journey__card-title">2023 Snapshot</h3>
+
+                        <div class="journey__snapshot-metrics">
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🚀</span>
+                  <span class="journey__snapshot-value">1</span>
+                  <span class="journey__snapshot-label">Projects</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🏆</span>
+                  <span class="journey__snapshot-value">3</span>
+                  <span class="journey__snapshot-label">Achievements</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">📜</span>
+                  <span class="journey__snapshot-value">2</span>
+                  <span class="journey__snapshot-label">Certificates</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🎤</span>
+                  <span class="journey__snapshot-value">1</span>
+                  <span class="journey__snapshot-label">Events</span>
+               </div>
+                           </div>
+            
+                        <div class="journey__key-highlight">
+               <span class="journey__key-highlight-label">Key Highlight</span>
+               <p class="journey__key-highlight-text">Sporting Sphere Complex — Java OOP Project (Sem 3)</p>
+            </div>
+            
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="school"
+                     >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--school">
+                  <i class="ri-book-open-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">2021</span>
+                           </div>
+
+            <h3 class="journey__card-title">HSC (Science)</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Results</h4>
+                  <ul class="journey__highlights">
+                                          <li>GPA 4.92 · Science group</li>
+                                          <li>Hazera Taju University &amp; College</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden"
+            data-year="school"
+                     >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--school">
+                  <i class="ri-book-open-line journey__icon" aria-hidden="true"></i>
+               </span>
+                              <span class="journey__year-badge">2019</span>
+                           </div>
+
+            <h3 class="journey__card-title">SSC (Science)</h3>
+
+            
+            
+                        <div class="journey__groups">
+                              <div class="journey__group">
+                  <h4 class="journey__group-label">Results</h4>
+                  <ul class="journey__highlights">
+                                          <li>GPA 4.83 · Science group</li>
+                                          <li>Jorarjong Buddha High School</li>
+                                       </ul>
+               </div>
+                           </div>
+            
+                     </article>
+                           <article
+            class="journey__card journey__card-hidden journey__card--snapshot"
+            data-year="school"
+                     >
+            <div class="journey__card-top">
+               <span class="journey__icon-wrap journey__icon-wrap--snapshot">
+                  <i class="ri-focus-3-line journey__icon" aria-hidden="true"></i>
+               </span>
+                           </div>
+
+            <h3 class="journey__card-title">School Snapshot</h3>
+
+                        <div class="journey__snapshot-metrics">
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🎓</span>
+                  <span class="journey__snapshot-value">4.92</span>
+                  <span class="journey__snapshot-label">HSC GPA</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🎓</span>
+                  <span class="journey__snapshot-value">4.83</span>
+                  <span class="journey__snapshot-label">SSC GPA</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">🏆</span>
+                  <span class="journey__snapshot-value">2</span>
+                  <span class="journey__snapshot-label">Board Exams</span>
+               </div>
+                              <div class="journey__snapshot-metric">
+                  <span class="journey__snapshot-emoji" aria-hidden="true">📚</span>
+                  <span class="journey__snapshot-value">Science</span>
+                  <span class="journey__snapshot-label">Group</span>
+               </div>
+                           </div>
+            
+                        <div class="journey__key-highlight">
+               <span class="journey__key-highlight-label">Key Highlight</span>
+               <p class="journey__key-highlight-text">Strong math &amp; physics foundation before university</p>
+            </div>
+            
+            
+                     </article>
+         
+         <button
+            type="button"
+            class="journey__credits-hide"
+            id="journey-credits-hide"
+            hidden
+            aria-label="Hide 122+ credits completed journey view"
+         >
+            ▲ Hide 122+ Credits Completed
+         </button>
+
+         <button
+            type="button"
+            class="journey__semester-hide"
+            id="journey-semester-hide"
+            hidden
+            aria-label="Hide 11th semester journey view"
+         >
+            ▲ Hide 11th Semester
+         </button>
+      </div>
    </div>
 </section>
 <section class="services section" id="services">
@@ -1024,6 +2148,57 @@
          <span class="contact__email" id="contact-email">asadbinjafor@gmail.com</span>
       </div>
 
+      <div class="contact__form">
+         <h3 class="contact__form-title">Contact Form</h3>
+         <form
+            class="contact__form-body"
+            id="contact-form"
+            action=""
+            method="POST"
+            data-recipient="asadbinjafor@gmail.com"
+            novalidate
+         >
+            <div class="contact__field">
+               <label for="contact-name" class="contact__label">Name</label>
+               <input
+                  type="text"
+                  name="name"
+                  id="contact-name"
+                  class="contact__input"
+                  placeholder="Your name"
+                  required
+                  autocomplete="name"
+               >
+            </div>
+            <div class="contact__field">
+               <label for="contact-email" class="contact__label">Email</label>
+               <input
+                  type="email"
+                  name="email"
+                  id="contact-email"
+                  class="contact__input"
+                  placeholder="your@email.com"
+                  required
+                  autocomplete="email"
+               >
+            </div>
+            <div class="contact__field">
+               <label for="contact-message" class="contact__label">Message</label>
+               <textarea
+                  name="message"
+                  id="contact-message"
+                  class="contact__input contact__textarea"
+                  placeholder="Write your message..."
+                  rows="5"
+                  required
+               ></textarea>
+            </div>
+            <button type="submit" class="button contact__submit" id="contact-submit">
+               Send            </button>
+            <p class="contact__form-status" id="contact-form-status" aria-live="polite"></p>
+         </form>
+      </div>
+
       <div class="contact__info">
          <div class="contact__group">
             <h3 class="contact__title">Email</h3>
@@ -1063,15 +2238,26 @@
    <footer class="footer">
    <div class="footer__container container grid">
       <p class="footer__copy">All Rights Reserved By <span>Asad</span></p>
-      <p class="footer__year" id="footer-year"></p>
+            <p class="footer__visitors">
+         <i class="ri-eye-line" aria-hidden="true"></i>
+         <span id="visitor-count" data-namespace="asadbinjafor-portfolio" data-key="site-visits">—</span>
+         visitors
+      </p>
+            <p class="footer__year" id="footer-year"></p>
    </div>
 </footer>
 
    <script src="assets/js/scrollreveal.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
-   <script src="assets/js/controllers/AppController.js?v=8"></script>
-   <script src="assets/js/controllers/ProjectsController.js?v=3"></script>
+   <script src="assets/js/controllers/ThemeController.js?v=2"></script>
+   <script src="assets/js/controllers/AppController.js?v=25"></script>
+   <script src="assets/js/controllers/JourneyController.js?v=10"></script>
+   <script src="assets/js/controllers/HomeTypingController.js?v=1"></script>
+   <script src="assets/js/controllers/ProjectsController.js?v=5"></script>
+   <script src="assets/js/controllers/ProjectModalController.js?v=2"></script>
    <script src="assets/js/controllers/ServicesController.js?v=1"></script>
-   <script src="assets/js/controllers/AchievementsController.js?v=3"></script>
-</body>
+   <script src="assets/js/controllers/AchievementsController.js?v=4"></script>
+   <script src="assets/js/controllers/ContactFormController.js?v=1"></script>
+      <script src="assets/js/controllers/AnalyticsController.js?v=1"></script>
+   </body>
 </html>

@@ -1,5 +1,5 @@
 /**
- * Projects carousel — 2 slides per page (desktop), 1 on mobile
+ * Projects carousel with category filters — 2 slides per page (desktop), 1 on mobile
  */
 (function () {
    'use strict'
@@ -7,15 +7,21 @@
    const DESKTOP_BREAKPOINT = 768
    const GAP = 16
 
-   let carousel, track, viewport, slides, dotsContainer, counterEl
+   let carousel, track, viewport, allSlides, slides, dotsContainer, counterEl, filtersContainer
    let currentPage = 0
+   let activeFilter = 'all'
    let touchStartX = 0
 
    function getPerView() {
       return window.innerWidth >= DESKTOP_BREAKPOINT ? 2 : 1
    }
 
+   function refreshSlides() {
+      slides = Array.from(allSlides).filter((slide) => !slide.classList.contains('projects__slide-hidden'))
+   }
+
    function getTotalPages() {
+      if (!slides.length) return 1
       return Math.ceil(slides.length / getPerView())
    }
 
@@ -36,7 +42,7 @@
 
    function setSlideSizes() {
       const slideWidth = getSlideWidth()
-      slides.forEach((slide) => {
+      allSlides.forEach((slide) => {
          slide.style.flex = `0 0 ${slideWidth}px`
          slide.style.width = `${slideWidth}px`
       })
@@ -58,6 +64,12 @@
 
    function updateCounter() {
       if (!counterEl) return
+
+      if (!slides.length) {
+         counterEl.textContent = '00 / 00'
+         return
+      }
+
       const perView = getPerView()
       const start = currentPage * perView + 1
       const end = Math.min(start + perView - 1, slides.length)
@@ -74,7 +86,9 @@
       if (currentPage < 0) currentPage = 0
 
       setSlideSizes()
-      track.style.transform = `translate3d(-${Math.round(currentPage * getPageWidth())}px, 0, 0)`
+      track.style.transform = slides.length
+         ? `translate3d(-${Math.round(currentPage * getPageWidth())}px, 0, 0)`
+         : 'translate3d(0, 0, 0)'
 
       const dots = dotsContainer.querySelectorAll('.projects__dot')
       dots.forEach((dot, i) => {
@@ -93,31 +107,73 @@
    let isNavigating = false
 
    function nextPage() {
-      if (isNavigating) return
+      if (isNavigating || !slides.length) return
       isNavigating = true
       goToPage(currentPage + 1)
       setTimeout(() => { isNavigating = false }, 400)
    }
 
    function prevPage() {
-      if (isNavigating) return
+      if (isNavigating || !slides.length) return
       isNavigating = true
       goToPage(currentPage - 1)
       setTimeout(() => { isNavigating = false }, 400)
+   }
+
+   function setActiveFilterButton(filter) {
+      filtersContainer?.querySelectorAll('.projects__filter').forEach((button) => {
+         const isActive = button.dataset.filter === filter
+         button.classList.toggle('projects__filter-active', isActive)
+         button.setAttribute('aria-selected', isActive ? 'true' : 'false')
+      })
+   }
+
+   function applyFilter(filter) {
+      activeFilter = filter
+
+      allSlides.forEach((slide) => {
+         const category = slide.dataset.category || ''
+         const show = filter === 'all' || category === filter
+         slide.classList.toggle('projects__slide-hidden', !show)
+         slide.setAttribute('aria-hidden', show ? 'false' : 'true')
+      })
+
+      refreshSlides()
+      currentPage = 0
+      setActiveFilterButton(filter)
+      buildDots()
+      updateUI()
+   }
+
+   function initFilters() {
+      filtersContainer = document.getElementById('projects-filters')
+      if (!filtersContainer) return
+
+      filtersContainer.addEventListener('click', (event) => {
+         const button = event.target.closest('.projects__filter')
+         if (!button) return
+
+         const filter = button.dataset.filter
+         if (!filter || filter === activeFilter) return
+
+         applyFilter(filter)
+      })
    }
 
    function init() {
       carousel = document.getElementById('projects-carousel')
       track = document.getElementById('projects-track')
       viewport = document.getElementById('projects-viewport')
-      slides = document.querySelectorAll('#projects-track .projects__slide')
+      allSlides = document.querySelectorAll('#projects-track .projects__slide')
       dotsContainer = document.getElementById('projects-dots')
       counterEl = document.getElementById('projects-counter')
 
-      if (!carousel || !track || !viewport || !slides.length || !dotsContainer) {
+      if (!carousel || !track || !viewport || !allSlides.length || !dotsContainer) {
          return
       }
 
+      refreshSlides()
+      initFilters()
       buildDots()
       updateUI()
 
@@ -149,7 +205,7 @@
          updateUI()
       })
 
-      window.ProjectsCarousel = { next: nextPage, prev: prevPage, goToPage }
+      window.ProjectsCarousel = { next: nextPage, prev: prevPage, goToPage, applyFilter }
    }
 
    if (document.readyState === 'loading') {

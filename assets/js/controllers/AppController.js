@@ -121,7 +121,7 @@ if (cursor && cursorFollower && window.matchMedia('(pointer:fine)').matches) {
       cursorFollower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`
    })
 
-   document.querySelectorAll('a, button:not(#projects-prev-btn):not(#projects-next-btn)').forEach((el) => {
+   document.querySelectorAll('a, button:not(#projects-prev-btn):not(#projects-next-btn), .about__skill--link').forEach((el) => {
       el.addEventListener('mouseenter', () => {
          cursor.classList.add('cursor-large')
          cursorFollower.classList.add('cursor-large')
@@ -138,21 +138,54 @@ if (typeof ScrollReveal !== 'undefined') {
    const sr = ScrollReveal({
       origin: 'bottom',
       distance: '48px',
-      duration: 2000,
-      delay: 200
+      duration: 1400,
+      delay: 150,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      reset: false
    })
 
-   sr.reveal('.home__data, .home__image', { origin: 'left', interval: 200 })
-   sr.reveal('.section__title', { delay: 100 })
-   sr.reveal('.about__content, .about__skill', { interval: 120 })
+   sr.reveal('.home__data', { origin: 'left', distance: '60px', duration: 1600 })
+   sr.reveal('.home__image', { origin: 'right', distance: '60px', duration: 1600, delay: 200 })
+   sr.reveal('.section__title', { delay: 100, distance: '36px' })
+   sr.reveal('.about__description', { delay: 120, distance: '32px' })
+   sr.reveal('.about__resume-actions', { delay: 180, distance: '32px' })
+   sr.reveal('.about__skill', { interval: 100, distance: '40px' })
+   sr.reveal('.projects__filters', { interval: 70, distance: '28px' })
    sr.reveal('#projects .section__title', { delay: 100, distance: '30px' })
-   sr.reveal('.work__card', { interval: 150 })
-   sr.reveal('.achievements__stat-card, .achievements__card', { interval: 120 })
-   sr.reveal('.contact__intro, .contact__group', { interval: 150 })
-   sr.reveal('.footer__container')
+   sr.reveal('.projects__card', { interval: 100, distance: '44px', duration: 1200 })
+   sr.reveal('.projects__slider', { delay: 200, distance: '36px' })
+   sr.reveal('#journey .section__title', { delay: 100, distance: '30px' })
+   sr.reveal('.journey__tab', { interval: 70, distance: '24px' })
+   sr.reveal('.journey__card', { interval: 90, distance: '32px' })
+   sr.reveal('#work .section__title', { origin: 'left', distance: '40px' })
+   sr.reveal('.work__card', { interval: 140, distance: '44px' })
+   sr.reveal('#services .section__title', { delay: 100 })
+   sr.reveal('.services__item', { interval: 120, distance: '40px' })
+   sr.reveal('.achievements__stat-card', { interval: 90, distance: '36px' })
+   sr.reveal('.achievements__card', { interval: 110, distance: '40px' })
+   sr.reveal('.contact__intro', { origin: 'left', distance: '40px' })
+   sr.reveal('.contact__form', { origin: 'right', distance: '40px', delay: 120 })
+   sr.reveal('.contact__group', { interval: 120, distance: '36px' })
+   sr.reveal('.footer__container', { distance: '24px', duration: 1000 })
 
    document.body.style.height = 'auto'
    document.documentElement.style.height = 'auto'
    scrollPageToTop()
    requestAnimationFrame(scrollPageToTop)
+}
+
+/*=============== SCROLL PROGRESS BAR ===============*/
+const scrollProgressBar = document.getElementById('scroll-progress-bar')
+
+if (scrollProgressBar) {
+   function updateScrollProgress() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0
+      scrollProgressBar.style.width = `${Math.min(progress, 100)}%`
+   }
+
+   window.addEventListener('scroll', updateScrollProgress, { passive: true })
+   window.addEventListener('resize', updateScrollProgress)
+   updateScrollProgress()
 }
