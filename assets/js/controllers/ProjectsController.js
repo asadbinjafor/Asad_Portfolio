@@ -86,6 +86,7 @@
       if (currentPage < 0) currentPage = 0
 
       setSlideSizes()
+      track.classList.add('is-sliding')
       track.style.transform = slides.length
          ? `translate3d(-${Math.round(currentPage * getPageWidth())}px, 0, 0)`
          : 'translate3d(0, 0, 0)'
@@ -160,7 +161,43 @@
       })
    }
 
+   function initProjectImages() {
+      document.querySelectorAll('.projects__img').forEach((img) => {
+         const fallback = img.dataset.fallback || ''
+
+         function applyFallback() {
+            if (!fallback || img.dataset.fallbackApplied === 'true') return
+
+            img.dataset.fallbackApplied = 'true'
+            img.src = fallback
+            img.classList.remove('projects__img--screenshot')
+            img.classList.add('projects__img--placeholder')
+            markLoaded()
+         }
+
+         function markLoaded() {
+            img.classList.remove('is-loading')
+            img.classList.add('is-loaded')
+         }
+
+         img.classList.add('is-loading')
+
+         if (img.complete) {
+            if (img.naturalWidth > 0) {
+               markLoaded()
+            } else {
+               applyFallback()
+            }
+         } else {
+            img.addEventListener('load', markLoaded, { once: true })
+            img.addEventListener('error', applyFallback, { once: true })
+         }
+      })
+   }
+
    function init() {
+      initProjectImages()
+
       carousel = document.getElementById('projects-carousel')
       track = document.getElementById('projects-track')
       viewport = document.getElementById('projects-viewport')
@@ -203,6 +240,12 @@
       window.addEventListener('resize', () => {
          buildDots()
          updateUI()
+      })
+
+      track.addEventListener('transitionend', (event) => {
+         if (event.propertyName === 'transform') {
+            track.classList.remove('is-sliding')
+         }
       })
 
       window.ProjectsCarousel = { next: nextPage, prev: prevPage, goToPage, applyFilter }

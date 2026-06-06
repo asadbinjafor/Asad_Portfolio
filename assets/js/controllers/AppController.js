@@ -11,6 +11,20 @@ function scrollPageToTop() {
 
 scrollPageToTop()
 
+function getScrollOffset() {
+   const header = document.getElementById('header')
+   const buffer = 12
+   return header ? header.offsetHeight + buffer : 72
+}
+
+function updateScrollOffsetVar() {
+   document.documentElement.style.setProperty('--scroll-offset', `${getScrollOffset()}px`)
+}
+
+window.getScrollOffset = getScrollOffset
+updateScrollOffsetVar()
+window.addEventListener('resize', updateScrollOffsetVar, { passive: true })
+
 window.addEventListener('load', () => {
    document.body.style.height = 'auto'
    document.documentElement.style.height = 'auto'
@@ -35,69 +49,98 @@ if (homeSplit && typeof anime !== 'undefined') {
    })
 }
 
-/*=============== COPY EMAIL IN CONTACT ===============*/
-const copyEmailBtn = document.getElementById('copy-email')
-
-if (copyEmailBtn) {
-   copyEmailBtn.addEventListener('click', async () => {
-      const email = copyEmailBtn.dataset.email
-
-      try {
-         await navigator.clipboard.writeText(email)
-         copyEmailBtn.textContent = 'Email copied!'
-         setTimeout(() => {
-            copyEmailBtn.textContent = 'Copy email'
-         }, 2000)
-      } catch {
-         window.location.href = `mailto:${email}`
-      }
-   })
-}
-
-/*=============== CURRENT YEAR OF THE FOOTER ===============*/
-const footerYear = document.getElementById('footer-year')
-if (footerYear) {
-   footerYear.innerHTML = `&#169; ${new Date().getFullYear()}`
-}
-
 /*=============== MOBILE NAV ===============*/
 const navMenu = document.getElementById('nav-menu')
 const navToggle = document.getElementById('nav-toggle')
 const navClose = document.getElementById('nav-close')
 
+function closeNavMenu() {
+   navMenu?.classList.remove('show-menu')
+   document.body.classList.remove('nav-open')
+   navToggle?.setAttribute('aria-expanded', 'false')
+}
+
+function openNavMenu() {
+   navMenu?.classList.add('show-menu')
+   document.body.classList.add('nav-open')
+   navToggle?.setAttribute('aria-expanded', 'true')
+}
+
 if (navToggle && navMenu) {
-   navToggle.addEventListener('click', () => navMenu.classList.add('show-menu'))
+   navToggle.addEventListener('click', openNavMenu)
 }
 
 if (navClose && navMenu) {
-   navClose.addEventListener('click', () => navMenu.classList.remove('show-menu'))
+   navClose.addEventListener('click', closeNavMenu)
 }
 
 document.querySelectorAll('.nav__link').forEach((link) => {
-   link.addEventListener('click', () => navMenu?.classList.remove('show-menu'))
+   link.addEventListener('click', closeNavMenu)
+})
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+   link.addEventListener('click', (event) => {
+      const hash = link.getAttribute('href')
+      if (!hash || hash === '#') return
+
+      const target = document.querySelector(hash)
+      if (!target) return
+
+      event.preventDefault()
+      closeNavMenu()
+
+      const top = target.getBoundingClientRect().top + window.scrollY - getScrollOffset()
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      window.scrollTo({
+         top: Math.max(0, top),
+         behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      })
+
+      if (hash !== window.location.hash) {
+         history.pushState(null, '', hash)
+      }
+
+      window.setTimeout(scrollActive, prefersReducedMotion ? 0 : 350)
+   })
+})
+
+document.addEventListener('keydown', (event) => {
+   if (event.key === 'Escape' && navMenu?.classList.contains('show-menu')) {
+      closeNavMenu()
+   }
+})
+
+document.addEventListener('click', (event) => {
+   if (!navMenu?.classList.contains('show-menu')) return
+
+   const target = event.target
+   if (navMenu.contains(target) || navToggle?.contains(target)) return
+
+   closeNavMenu()
 })
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')
+const scrollProgressBar = document.getElementById('scroll-progress-bar')
 
 function scrollActive() {
    const scrollY = window.pageYOffset
+   const offset = getScrollOffset()
 
    sections.forEach((section) => {
       const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - 100
+      const sectionTop = section.offsetTop - offset
       const sectionId = section.getAttribute('id')
       const link = document.querySelector(`.nav__link[href*="${sectionId}"]`)
 
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
          link?.classList.add('active-link')
       } else {
          link?.classList.remove('active-link')
       }
    })
 }
-
-window.addEventListener('scroll', scrollActive)
 
 /*=============== HEADER SCROLL ===============*/
 function scrollHeader() {
@@ -109,17 +152,56 @@ function scrollHeader() {
    }
 }
 
-window.addEventListener('scroll', scrollHeader)
+/*=============== SCROLL PERFORMANCE (RAF) ===============*/
+let scrollFramePending = false
+
+function runScrollTasks() {
+   scrollActive()
+   scrollHeader()
+
+   if (scrollProgressBar) {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0
+      scrollProgressBar.style.width = `${Math.min(progress, 100)}%`
+   }
+
+   scrollFramePending = false
+}
+
+function queueScrollTasks() {
+   if (scrollFramePending) return
+   scrollFramePending = true
+   requestAnimationFrame(runScrollTasks)
+}
+
+window.addEventListener('scroll', queueScrollTasks, { passive: true })
+window.addEventListener('resize', queueScrollTasks, { passive: true })
+window.addEventListener('load', queueScrollTasks)
+queueScrollTasks()
 
 /*=============== CUSTOM CURSOR ===============*/
 const cursor = document.getElementById('cursor')
 const cursorFollower = document.getElementById('cursor-follower')
 
 if (cursor && cursorFollower && window.matchMedia('(pointer:fine)').matches) {
-   document.addEventListener('mousemove', (e) => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`
-      cursorFollower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`
-   })
+   let cursorFramePending = false
+   let cursorX = 0
+   let cursorY = 0
+
+   document.addEventListener('mousemove', (event) => {
+      cursorX = event.clientX
+      cursorY = event.clientY
+
+      if (cursorFramePending) return
+      cursorFramePending = true
+
+      requestAnimationFrame(() => {
+         cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`
+         cursorFollower.style.transform = `translate(${cursorX}px, ${cursorY}px)`
+         cursorFramePending = false
+      })
+   }, { passive: true })
 
    document.querySelectorAll('a, button:not(#projects-prev-btn):not(#projects-next-btn), .about__skill--link').forEach((el) => {
       el.addEventListener('mouseenter', () => {
@@ -155,37 +237,31 @@ if (typeof ScrollReveal !== 'undefined') {
    sr.reveal('.projects__card', { interval: 100, distance: '44px', duration: 1200 })
    sr.reveal('.projects__slider', { delay: 200, distance: '36px' })
    sr.reveal('#journey .section__title', { delay: 100, distance: '30px' })
+   sr.reveal('.journey__academic-progress', { delay: 120, distance: '32px' })
    sr.reveal('.journey__tab', { interval: 70, distance: '24px' })
+   sr.reveal('.journey__hint', { delay: 160, distance: '20px' })
    sr.reveal('.journey__card', { interval: 90, distance: '32px' })
    sr.reveal('#work .section__title', { origin: 'left', distance: '40px' })
    sr.reveal('.work__card', { interval: 140, distance: '44px' })
    sr.reveal('#services .section__title', { delay: 100 })
    sr.reveal('.services__item', { interval: 120, distance: '40px' })
+   sr.reveal('#technologies .section__title', { delay: 100, distance: '30px' })
+   sr.reveal('.tech__stat', { interval: 80, distance: '32px' })
+   sr.reveal('.tech__tab', { interval: 60, distance: '22px' })
+   sr.reveal('.tech__panels', { delay: 160, distance: '28px' })
    sr.reveal('.achievements__stat-card', { interval: 90, distance: '36px' })
+   sr.reveal('.achievements__hint', { delay: 160, distance: '20px' })
    sr.reveal('.achievements__card', { interval: 110, distance: '40px' })
-   sr.reveal('.contact__intro', { origin: 'left', distance: '40px' })
+   sr.reveal('.contact__title-left', { origin: 'left', distance: '40px' })
+   sr.reveal('.contact__description', { origin: 'left', distance: '32px', delay: 80 })
+   sr.reveal('#copy-email', { origin: 'left', distance: '28px', delay: 140 })
    sr.reveal('.contact__form', { origin: 'right', distance: '40px', delay: 120 })
-   sr.reveal('.contact__group', { interval: 120, distance: '36px' })
+   sr.reveal('.contact__group', { interval: 100, distance: '32px' })
+   sr.reveal('.contact__form-footer', { origin: 'right', distance: '28px', delay: 180 })
    sr.reveal('.footer__container', { distance: '24px', duration: 1000 })
 
    document.body.style.height = 'auto'
    document.documentElement.style.height = 'auto'
    scrollPageToTop()
    requestAnimationFrame(scrollPageToTop)
-}
-
-/*=============== SCROLL PROGRESS BAR ===============*/
-const scrollProgressBar = document.getElementById('scroll-progress-bar')
-
-if (scrollProgressBar) {
-   function updateScrollProgress() {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0
-      scrollProgressBar.style.width = `${Math.min(progress, 100)}%`
-   }
-
-   window.addEventListener('scroll', updateScrollProgress, { passive: true })
-   window.addEventListener('resize', updateScrollProgress)
-   updateScrollProgress()
 }

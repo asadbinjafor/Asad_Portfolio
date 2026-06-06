@@ -1,5 +1,5 @@
 /**
- * Hero typing effect — cycles through role words with type/delete animation
+ * Hero typing effect — cycles through role titles with type/erase animation
  */
 (function () {
    'use strict'
@@ -30,36 +30,66 @@
    let wordIndex = 0
    let charIndex = 0
    let isDeleting = false
+   let timerId = null
 
-   const TYPE_SPEED = 85
-   const DELETE_SPEED = 45
-   const PAUSE_AFTER_TYPE = 2000
-   const PAUSE_AFTER_DELETE = 450
+   const TYPE_SPEED = 72
+   const DELETE_SPEED = 38
+   const PAUSE_AFTER_TYPE = 2400
+   const PAUSE_AFTER_DELETE = 420
+
+   function getDelay(char, deleting) {
+      if (deleting) {
+         return char === ' ' ? DELETE_SPEED + 12 : DELETE_SPEED
+      }
+
+      if (char === ' ') return TYPE_SPEED + 40
+      if (char === '&') return TYPE_SPEED + 28
+      if (char === ',') return TYPE_SPEED + 60
+      return TYPE_SPEED
+   }
+
+   function schedule(nextDelay) {
+      window.clearTimeout(timerId)
+      timerId = window.setTimeout(tick, nextDelay)
+   }
 
    function tick() {
       const currentWord = words[wordIndex]
+      let delay = TYPE_SPEED
 
       if (isDeleting) {
          typingEl.textContent = currentWord.substring(0, charIndex - 1)
-         charIndex--
+         charIndex -= 1
+         delay = getDelay(currentWord.charAt(charIndex), true)
+
+         if (charIndex === 0) {
+            isDeleting = false
+            wordIndex = (wordIndex + 1) % words.length
+            delay = PAUSE_AFTER_DELETE
+         }
       } else {
          typingEl.textContent = currentWord.substring(0, charIndex + 1)
-         charIndex++
+         delay = getDelay(currentWord.charAt(charIndex), false)
+         charIndex += 1
+
+         if (charIndex === currentWord.length) {
+            isDeleting = true
+            delay = PAUSE_AFTER_TYPE
+         }
       }
 
-      let delay = isDeleting ? DELETE_SPEED : TYPE_SPEED
-
-      if (!isDeleting && charIndex === currentWord.length) {
-         delay = PAUSE_AFTER_TYPE
-         isDeleting = true
-      } else if (isDeleting && charIndex === 0) {
-         isDeleting = false
-         wordIndex = (wordIndex + 1) % words.length
-         delay = PAUSE_AFTER_DELETE
-      }
-
-      setTimeout(tick, delay)
+      schedule(delay)
    }
+
+   document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+         window.clearTimeout(timerId)
+         timerId = null
+         return
+      }
+
+      schedule(PAUSE_AFTER_DELETE)
+   })
 
    tick()
 })()

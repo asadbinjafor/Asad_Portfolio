@@ -1,11 +1,13 @@
 /**
- * Project details modal — Features, Technologies, Challenges
+ * Project details modal — Features, Metrics, Technologies, Challenges
  */
 (function () {
    'use strict'
 
    let modal, projectsMap, lastFocus = null
    let touchMoved = false
+   let isClosing = false
+   const MODAL_CLOSE_MS = 300
 
    function getProjectsMap() {
       const el = document.getElementById('projects-modal-data')
@@ -41,18 +43,108 @@
       })
    }
 
+   function fillMetrics(container, metrics) {
+      container.innerHTML = ''
+      if (!metrics?.length) return
+
+      metrics.forEach((metric) => {
+         const card = document.createElement('div')
+         card.className = 'project-modal__metric'
+
+         const value = document.createElement('span')
+         value.className = 'project-modal__metric-value'
+         value.textContent = metric.value
+
+         const label = document.createElement('span')
+         label.className = 'project-modal__metric-label'
+         label.textContent = metric.label
+
+         card.append(value, label)
+         container.appendChild(card)
+      })
+   }
+
+   function getFocusableElements() {
+      if (!modal) return []
+      return Array.from(modal.querySelectorAll(
+         'button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      ))
+   }
+
+   function trapFocus(event) {
+      if (modal.hidden || event.key !== 'Tab') return
+
+      const focusables = getFocusableElements()
+      if (!focusables.length) return
+
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+
+      if (event.shiftKey && document.activeElement === first) {
+         event.preventDefault()
+         last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+         event.preventDefault()
+         first.focus()
+      }
+   }
+
+   function setProjectImage(project) {
+      const img = document.getElementById('project-modal-img')
+      if (!img) return
+
+      const fallback = project.image_fallback || project.image || ''
+      const source = project.image || fallback
+
+      img.alt = project.image_alt || project.plain_title || ''
+      img.dataset.fallback = fallback
+      delete img.dataset.fallbackApplied
+      img.classList.remove('project-modal__img--screenshot', 'project-modal__img--placeholder', 'is-loading', 'is-loaded')
+      img.classList.add('is-loading')
+      img.classList.toggle('project-modal__img--screenshot', Boolean(project.is_screenshot))
+      img.classList.toggle('project-modal__img--placeholder', !project.is_screenshot)
+
+      function applyFallback() {
+         if (!fallback || img.dataset.fallbackApplied === 'true') return
+
+         img.dataset.fallbackApplied = 'true'
+         img.src = fallback
+         img.classList.remove('project-modal__img--screenshot')
+         img.classList.add('project-modal__img--placeholder')
+         img.classList.remove('is-loading')
+         img.classList.add('is-loaded')
+      }
+
+      img.onload = () => {
+         img.classList.remove('is-loading')
+         img.classList.add('is-loaded')
+      }
+
+      img.onerror = applyFallback
+      img.src = source
+
+      if (img.complete) {
+         if (img.naturalWidth > 0) {
+            img.classList.remove('is-loading')
+            img.classList.add('is-loaded')
+         } else {
+            applyFallback()
+         }
+      }
+   }
+
    function openModal(projectId) {
       const project = projectsMap[projectId]
       if (!project || !modal) return
 
       lastFocus = document.activeElement
 
-      document.getElementById('project-modal-img').src = project.image
-      document.getElementById('project-modal-img').alt = project.image_alt
+      setProjectImage(project)
       document.getElementById('project-modal-category').textContent = project.category
       document.getElementById('project-modal-title').textContent = project.plain_title
 
       fillList(document.getElementById('project-modal-features'), project.features)
+      fillMetrics(document.getElementById('project-modal-metrics'), project.metrics)
       fillTags(document.getElementById('project-modal-tech'), project.tech_stack)
       fillList(document.getElementById('project-modal-challenges'), project.challenges)
 
@@ -67,6 +159,8 @@
       }
 
       modal.hidden = false
+      modal.classList.remove('project-modal--closing')
+      modal.querySelector('.project-modal__dialog')?.classList.remove('project-modal__dialog--closing')
       modal.setAttribute('aria-hidden', 'false')
       document.body.classList.add('project-modal-open')
 
@@ -74,15 +168,25 @@
    }
 
    function closeModal() {
-      if (!modal || modal.hidden) return
+      if (!modal || modal.hidden || isClosing) return
 
-      modal.hidden = true
-      modal.setAttribute('aria-hidden', 'true')
-      document.body.classList.remove('project-modal-open')
+      isClosing = true
+      const dialog = modal.querySelector('.project-modal__dialog')
+      modal.classList.add('project-modal--closing')
+      dialog?.classList.add('project-modal__dialog--closing')
 
-      if (lastFocus && typeof lastFocus.focus === 'function') {
-         lastFocus.focus()
-      }
+      window.setTimeout(() => {
+         modal.hidden = true
+         modal.classList.remove('project-modal--closing')
+         dialog?.classList.remove('project-modal__dialog--closing')
+         modal.setAttribute('aria-hidden', 'true')
+         document.body.classList.remove('project-modal-open')
+         isClosing = false
+
+         if (lastFocus && typeof lastFocus.focus === 'function') {
+            lastFocus.focus()
+         }
+      }, MODAL_CLOSE_MS)
    }
 
    function init() {
@@ -127,7 +231,10 @@
       document.addEventListener('keydown', (event) => {
          if (event.key === 'Escape' && !modal.hidden) {
             closeModal()
+            return
          }
+
+         trapFocus(event)
       })
 
       const carousel = document.getElementById('projects-carousel')

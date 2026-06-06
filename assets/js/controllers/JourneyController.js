@@ -5,7 +5,7 @@
 (function () {
    'use strict'
 
-   let tabs, cards, grid, creditsHideBtn, semesterHideBtn
+   let tabs, cards, grid, creditsHideBtn, semesterHideBtn, academicProgress
    let activeTab = null
    let activeMode = null
    let lastStatKey = null
@@ -38,6 +38,17 @@
       semesterHideBtn.hidden = !visible
    }
 
+   function setAcademicProgressVisible(visible) {
+      if (!academicProgress) return
+
+      academicProgress.classList.toggle('journey__academic-progress--visible', visible)
+      academicProgress.setAttribute('aria-hidden', visible ? 'false' : 'true')
+   }
+
+   function setCreditsExpanded(expanded) {
+      grid?.classList.toggle('journey__grid--expanded', expanded)
+   }
+
    function hideAll() {
       activeMode = null
       lastStatKey = null
@@ -50,6 +61,8 @@
       clearTabSelection()
       setCreditsHideVisible(false)
       setSemesterHideVisible(false)
+      setAcademicProgressVisible(false)
+      setCreditsExpanded(false)
 
       if (grid) {
          grid.classList.add('journey__grid-idle')
@@ -72,6 +85,8 @@
       activeMode = 'year'
       setCreditsHideVisible(false)
       setSemesterHideVisible(false)
+      setAcademicProgressVisible(false)
+      setCreditsExpanded(false)
 
       cards.forEach((card) => {
          const match = card.dataset.year === year
@@ -88,6 +103,8 @@
 
       activeMode = 'credits'
       clearTabSelection()
+      setAcademicProgressVisible(true)
+      setCreditsExpanded(true)
 
       cards.forEach((card) => {
          const isSchool = card.dataset.year === 'school'
@@ -118,10 +135,12 @@
    }
 
    function scrollToJourney() {
-      const section = document.getElementById('journey')
-      if (!section) return
+      const target = academicProgress?.classList.contains('journey__academic-progress--visible')
+         ? academicProgress
+         : document.getElementById('journey')
+      if (!target) return
 
-      const top = section.getBoundingClientRect().top + window.scrollY - 88
+      const top = target.getBoundingClientRect().top + window.scrollY - (window.getScrollOffset?.() ?? 72)
       window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
    }
 
@@ -132,7 +151,7 @@
       const section = target || document.getElementById('about-stats') || document.getElementById('about')
       if (!section) return
 
-      const top = section.getBoundingClientRect().top + window.scrollY - 88
+      const top = section.getBoundingClientRect().top + window.scrollY - (window.getScrollOffset?.() ?? 72)
       window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
    }
 
@@ -198,6 +217,7 @@
       grid = document.getElementById('journey-grid')
       creditsHideBtn = document.getElementById('journey-credits-hide')
       semesterHideBtn = document.getElementById('journey-semester-hide')
+      academicProgress = document.getElementById('journey-academic-progress')
 
       if (!tabs.length || !cards.length) return
 
