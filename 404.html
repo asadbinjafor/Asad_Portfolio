@@ -17,9 +17,7 @@
    <script>
       (function () {
          var stored = localStorage.getItem('asad-portfolio-theme');
-         var theme = stored === 'light' || stored === 'dark'
-            ? stored
-            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+         var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
          document.documentElement.setAttribute('data-theme', theme);
       })();
    </script>
@@ -59,6 +57,6 @@
       </div>
    </main>
 
-   <script src="assets/js/controllers/ThemeController.js?v=2"></script>
+   <script src="assets/js/controllers/ThemeController.js?v=3"></script>
 </body>
 </html>

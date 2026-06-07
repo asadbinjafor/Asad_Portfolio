@@ -13,7 +13,7 @@
          return stored
       }
 
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+      return 'dark'
    }
 
    function updateToggleLabel(theme) {
