@@ -445,6 +445,11 @@ img {
   outline-offset: 3px;
 }
 
+.nav__toggle i,
+.nav__close i {
+  pointer-events: none;
+}
+
 .nav__toggle,
 .nav__close {
   font-size: 1.5rem;
@@ -454,6 +459,10 @@ img {
   background: transparent;
   padding: 0;
   line-height: 1;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  z-index: calc(var(--z-fixed) + 21);
 }
 
 .nav__actions {
@@ -532,18 +541,35 @@ img {
   .nav__menu {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 80%;
     max-width: 320px;
     height: 100vh;
+    height: 100dvh;
     background-color: var(--container-color);
     padding: 5rem 2rem 2rem;
-    transition: right var(--motion-slow) var(--ease-smooth);
+    transition: transform var(--motion-slow) var(--ease-smooth), visibility 0s linear var(--motion-slow);
     box-shadow: var(--nav-menu-shadow);
+    z-index: calc(var(--z-fixed) + 5);
+    transform: translate3d(100%, 0, 0);
+    visibility: hidden;
+    pointer-events: none;
+    clip-path: inset(0 0 0 100%);
+    -webkit-clip-path: inset(0 0 0 100%);
   }
 
-  .show-menu {
-    right: 0;
+  .nav__menu.show-menu {
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+    pointer-events: auto;
+    clip-path: inset(0 0 0 0);
+    -webkit-clip-path: inset(0 0 0 0);
+    transition: transform var(--motion-slow) var(--ease-smooth), visibility 0s;
+  }
+
+  .nav__actions {
+    position: relative;
+    z-index: calc(var(--z-fixed) + 20);
   }
 }
 

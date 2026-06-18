@@ -49,34 +49,7 @@ if (homeSplit && typeof anime !== 'undefined') {
    })
 }
 
-/*=============== MOBILE NAV ===============*/
-const navMenu = document.getElementById('nav-menu')
-const navToggle = document.getElementById('nav-toggle')
-const navClose = document.getElementById('nav-close')
-
-function closeNavMenu() {
-   navMenu?.classList.remove('show-menu')
-   document.body.classList.remove('nav-open')
-   navToggle?.setAttribute('aria-expanded', 'false')
-}
-
-function openNavMenu() {
-   navMenu?.classList.add('show-menu')
-   document.body.classList.add('nav-open')
-   navToggle?.setAttribute('aria-expanded', 'true')
-}
-
-if (navToggle && navMenu) {
-   navToggle.addEventListener('click', openNavMenu)
-}
-
-if (navClose && navMenu) {
-   navClose.addEventListener('click', closeNavMenu)
-}
-
-document.querySelectorAll('.nav__link').forEach((link) => {
-   link.addEventListener('click', closeNavMenu)
-})
+/*=============== MOBILE NAV (see MobileNavController.js) ===============*/
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
    link.addEventListener('click', (event) => {
@@ -87,7 +60,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
       if (!target) return
 
       event.preventDefault()
-      closeNavMenu()
+      window.portfolioCloseNavMenu?.()
 
       const top = target.getBoundingClientRect().top + window.scrollY - getScrollOffset()
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -103,21 +76,6 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
       window.setTimeout(scrollActive, prefersReducedMotion ? 0 : 350)
    })
-})
-
-document.addEventListener('keydown', (event) => {
-   if (event.key === 'Escape' && navMenu?.classList.contains('show-menu')) {
-      closeNavMenu()
-   }
-})
-
-document.addEventListener('click', (event) => {
-   if (!navMenu?.classList.contains('show-menu')) return
-
-   const target = event.target
-   if (navMenu.contains(target) || navToggle?.contains(target)) return
-
-   closeNavMenu()
 })
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
