@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://asadbinjafor.github.io/Asad_Portfolio/sitemap.xml

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Course Management Project">
+  <defs>
+    <linearGradient id="bg7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#101828"/>
+      <stop offset="100%" style="stop-color:#0d0d14"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg7)"/>
+  <rect x="260" y="110" width="280" height="200" rx="12" fill="#1a2540" stroke="#9b7fe8" stroke-width="2"/>
+  <rect x="290" y="145" width="220" height="14" rx="3" fill="#9b7fe8" opacity="0.7"/>
+  <rect x="290" y="175" width="180" height="10" rx="2" fill="#6b5ce7" opacity="0.5"/>
+  <rect x="290" y="195" width="200" height="10" rx="2" fill="#6b5ce7" opacity="0.5"/>
+  <rect x="290" y="215" width="160" height="10" rx="2" fill="#6b5ce7" opacity="0.5"/>
+  <ellipse cx="520" cy="200" rx="50" ry="60" fill="none" stroke="#5ec4e8" stroke-width="3"/>
+  <ellipse cx="520" cy="200" rx="30" ry="38" fill="#5ec4e8" opacity="0.2"/>
+  <text x="400" y="410" text-anchor="middle" fill="#e8e6f0" font-family="system-ui,sans-serif" font-size="22" font-weight="600">Course Management</text>
+  <text x="400" y="435" text-anchor="middle" fill="#5ec4e8" font-family="system-ui,sans-serif" font-size="14">Oracle SQL � MySQL � Database</text>
+</svg>

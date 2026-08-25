@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="AgriTech Project">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#102018"/>
+      <stop offset="100%" style="stop-color:#0d0d14"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg5)"/>
+  <ellipse cx="400" cy="320" rx="220" ry="40" fill="#1a3020"/>
+  <rect x="360" y="200" width="80" height="120" fill="#5a8f4a"/>
+  <circle cx="400" cy="180" r="70" fill="#6bb85a" opacity="0.8"/>
+  <circle cx="370" cy="160" r="40" fill="#7dce6a" opacity="0.6"/>
+  <circle cx="430" cy="155" r="45" fill="#7dce6a" opacity="0.6"/>
+  <rect x="250" y="280" width="300" height="4" fill="#9b7fe8" opacity="0.4"/>
+  <rect x="300" y="250" width="40" height="50" fill="#9b7fe8" opacity="0.3" rx="4"/>
+  <rect x="460" y="240" width="50" height="60" fill="#9b7fe8" opacity="0.3" rx="4"/>
+  <text x="400" y="410" text-anchor="middle" fill="#e8e6f0" font-family="system-ui,sans-serif" font-size="22" font-weight="600">AgriTech Village</text>
+  <text x="400" y="435" text-anchor="middle" fill="#6bb85a" font-family="system-ui,sans-serif" font-size="14">.NET � C# � Farm Management</text>
+</svg>
