@@ -50,7 +50,7 @@
    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-   <link rel="stylesheet" href="assets/css/styles.css?v=86">
+   <link rel="stylesheet" href="assets/css/styles.css?v=88">
    <script>
       (function () {
          var stored = localStorage.getItem('asad-portfolio-theme');
@@ -64,6 +64,7 @@
    </script>
 </head>
 <body>
+   <canvas id="scroll-background" class="scroll-background" aria-hidden="true"></canvas>
    <a href="#main-content" class="skip-link">Skip to main content</a>
 
    <div class="scroll-progress" aria-hidden="true">
@@ -1050,8 +1051,6 @@
    <div class="work__container container">
       <h2 class="section__title">
          <span>My Journey</span> <br> Education      </h2>
-
-      <p class="work__eyebrow">Education</p>
 
       <div class="work__content" id="education">
                   <article class="work__card">
@@ -3728,9 +3727,10 @@
    </div>
 </footer>
 
-      <script defer src="assets/js/scrollreveal.min.js"></script>
+   <script defer src="assets/js/scrollreveal.min.js"></script>
    <script defer src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
    <script defer src="assets/js/controllers/ThemeController.js?v=3"></script>
+   <script defer src="assets/js/controllers/ScrollBackgroundController.js?v=2"></script>
    <script defer src="assets/js/controllers/ContactCopyController.js?v=45"></script>
    <script defer src="assets/js/controllers/AppController.js?v=49"></script>
    <script defer src="assets/js/controllers/JourneyController.js?v=14"></script>
