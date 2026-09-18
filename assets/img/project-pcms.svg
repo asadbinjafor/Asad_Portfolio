@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Programming Contest Management System dashboard">
+  <defs>
+    <linearGradient id="pc-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1730"/>
+      <stop offset="1" stop-color="#10121f"/>
+    </linearGradient>
+    <linearGradient id="pc-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#35d0ba"/>
+      <stop offset="1" stop-color="#5b8cff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#pc-bg)"/>
+  <rect x="64" y="58" width="672" height="314" rx="18" fill="#101d36" stroke="#2d5d8f" stroke-width="2"/>
+  <rect x="64" y="58" width="672" height="48" rx="18" fill="#142849"/>
+  <circle cx="91" cy="82" r="7" fill="#35d0ba"/><circle cx="114" cy="82" r="7" fill="#5b8cff"/><circle cx="137" cy="82" r="7" fill="#ffcc66"/>
+  <text x="170" y="88" fill="#e8f4ff" font-family="system-ui,sans-serif" font-size="16" font-weight="700">PCMS · Contest Control</text>
+  <rect x="88" y="128" width="208" height="214" rx="12" fill="#0c172b"/>
+  <text x="108" y="158" fill="#8ba9cb" font-family="system-ui,sans-serif" font-size="12">ACTIVE CONTEST</text>
+  <text x="108" y="188" fill="#f6fbff" font-family="system-ui,sans-serif" font-size="19" font-weight="700">AIUB Code Sprint</text>
+  <g fill="#172a47">
+    <rect x="108" y="212" width="168" height="28" rx="7"/><rect x="108" y="252" width="168" height="28" rx="7"/><rect x="108" y="292" width="168" height="28" rx="7"/>
+  </g>
+  <g fill="#c7d9ee" font-family="system-ui,sans-serif" font-size="12">
+    <text x="122" y="231">Problems · 8</text><text x="122" y="271">Participants · 64</text><text x="122" y="311">Submissions · Manual review</text>
+  </g>
+  <rect x="316" y="128" width="396" height="214" rx="12" fill="#0c172b"/>
+  <text x="338" y="158" fill="#8ba9cb" font-family="system-ui,sans-serif" font-size="12">LEADERBOARD</text>
+  <g font-family="system-ui,sans-serif" font-size="13">
+    <rect x="338" y="176" width="352" height="40" rx="8" fill="#142947"/><text x="356" y="201" fill="#35d0ba" font-weight="700">01</text><text x="402" y="201" fill="#eef7ff">Participant Alpha</text><text x="636" y="201" fill="#eef7ff">420</text>
+    <rect x="338" y="226" width="352" height="40" rx="8" fill="#12233d"/><text x="356" y="251" fill="#5b8cff" font-weight="700">02</text><text x="402" y="251" fill="#eef7ff">Participant Beta</text><text x="636" y="251" fill="#eef7ff">360</text>
+    <rect x="338" y="276" width="352" height="40" rx="8" fill="#102038"/><text x="356" y="301" fill="#ffcc66" font-weight="700">03</text><text x="402" y="301" fill="#eef7ff">Participant Gamma</text><text x="636" y="301" fill="#eef7ff">300</text>
+  </g>
+  <text x="400" y="407" text-anchor="middle" fill="#eef7ff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">Programming Contest Management System</text>
+  <text x="400" y="432" text-anchor="middle" fill="#55cfca" font-family="system-ui,sans-serif" font-size="14">PHP · Oracle · OCI8 · PL/SQL</text>
+</svg>

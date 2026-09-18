@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="TrolleyHub software requirements engineering report">
+  <defs>
+    <linearGradient id="th-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111b2d"/>
+      <stop offset="1" stop-color="#0b1019"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#th-bg)"/>
+  <rect x="112" y="48" width="576" height="326" rx="14" fill="#f5f7fb"/>
+  <rect x="112" y="48" width="576" height="58" rx="14" fill="#184b8a"/>
+  <text x="144" y="84" fill="#fff" font-family="system-ui,sans-serif" font-size="21" font-weight="800">TrolleyHub</text>
+  <text x="657" y="83" text-anchor="end" fill="#bfe0ff" font-family="system-ui,sans-serif" font-size="11">SRE REPORT</text>
+  <text x="144" y="137" fill="#17233a" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Centralized Inventory &amp; Sales Management</text>
+  <g stroke="#2b65a5" stroke-width="2" fill="#e8f2fc">
+    <rect x="144" y="167" width="110" height="50" rx="8"/>
+    <rect x="345" y="151" width="110" height="50" rx="8"/>
+    <rect x="546" y="167" width="110" height="50" rx="8"/>
+    <rect x="244" y="256" width="110" height="50" rx="8"/>
+    <rect x="446" y="256" width="110" height="50" rx="8"/>
+    <path d="M254 192H345M455 176H546M400 201V232M299 232V256M501 232V256M299 232H501" fill="none"/>
+  </g>
+  <g fill="#1a416f" font-family="system-ui,sans-serif" font-size="12" font-weight="700" text-anchor="middle">
+    <text x="199" y="197">Owner</text><text x="400" y="181">TrolleyHub</text><text x="601" y="197">Customer</text><text x="299" y="286">Inventory</text><text x="501" y="286">Sales &amp; Finance</text>
+  </g>
+  <g fill="#d89b24" font-family="system-ui,sans-serif" font-weight="800">
+    <text x="150" y="342" font-size="18">48 FR</text><text x="252" y="342" font-size="18">28 NFR</text><text x="380" y="342" font-size="18">19 Weeks</text><text x="531" y="342" font-size="18">3-Year Plan</text>
+  </g>
+  <text x="400" y="407" text-anchor="middle" fill="#eef4ff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">TrolleyHub SRE</text>
+  <text x="400" y="432" text-anchor="middle" fill="#78b7ef" font-family="system-ui,sans-serif" font-size="14">Requirements · UML · Waterfall · Feasibility</text>
+</svg>

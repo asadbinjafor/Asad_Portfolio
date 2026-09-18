@@ -171,9 +171,9 @@
       if (lastStatKey === statKey && matchesStatState(mode, year)) {
          hideAll()
          if (mode === 'credits') {
-            scrollToAboutStats('122+')
-         } else if (statKey === '11th') {
-            scrollToAboutStats('11th')
+            scrollToAboutStats('136')
+         } else if (statKey === '12th') {
+            scrollToAboutStats('12th')
          }
          return
       }
@@ -201,7 +201,7 @@
          if (tab) {
             setActiveTab(tab)
             filterByYear(year)
-            if (statKey === '11th') {
+            if (statKey === '12th') {
                setSemesterHideVisible(true)
             }
             if (focus) {
@@ -247,12 +247,12 @@
 
       creditsHideBtn?.addEventListener('click', () => {
          hideAll()
-         scrollToAboutStats('122+')
+         scrollToAboutStats('136')
       })
 
       semesterHideBtn?.addEventListener('click', () => {
          hideAll()
-         scrollToAboutStats('11th')
+         scrollToAboutStats('12th')
       })
 
       hideAll()
