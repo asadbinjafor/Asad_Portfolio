@@ -170,7 +170,7 @@
 
             img.dataset.fallbackApplied = 'true'
             img.src = fallback
-            img.classList.remove('projects__img--screenshot')
+            img.classList.remove('projects__img--screenshot', 'projects__img--cover')
             img.classList.add('projects__img--placeholder')
             markLoaded()
          }

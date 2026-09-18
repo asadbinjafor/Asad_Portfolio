@@ -1123,11 +1123,12 @@ img {
 .projects__img-wrap {
   overflow: hidden;
   background-color: var(--container-color);
+  aspect-ratio: 16 / 9;
 }
 
 .projects__img {
   width: 100%;
-  height: 200px;
+  height: 100%;
   display: block;
   object-position: center;
   background-color: var(--container-color);
@@ -1144,16 +1145,17 @@ img {
   object-position: top center;
 }
 
+.projects__img--cover {
+  object-fit: cover;
+  object-position: center;
+}
+
 .projects__img--placeholder {
   object-fit: contain;
   padding: 1.15rem;
 }
 
 @media screen and (min-width: 768px) {
-  .projects__img {
-    height: 170px;
-  }
-
   .projects__title {
     font-size: var(--h3-font-size);
   }
@@ -1364,7 +1366,8 @@ body.project-modal-open {
 
 .project-modal__img {
   width: 100%;
-  height: 12rem;
+  height: auto;
+  aspect-ratio: 16 / 9;
   display: block;
   object-position: center;
   background-color: var(--container-color);
@@ -1379,6 +1382,11 @@ body.project-modal-open {
 .project-modal__img--screenshot {
   object-fit: cover;
   object-position: top center;
+}
+
+.project-modal__img--cover {
+  object-fit: cover;
+  object-position: center;
 }
 
 .project-modal__img--placeholder {
@@ -1555,12 +1563,6 @@ body.project-modal-open {
 
   .project-modal__metric-value {
     font-size: var(--small-font-size);
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .project-modal__img {
-    height: 14rem;
   }
 }
 

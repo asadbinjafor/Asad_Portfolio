@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="agritech-title agritech-desc">
+  <title id="agritech-title">Agricultural village management concept</title>
+  <desc id="agritech-desc">Concept cover based on verified project features</desc>
+  <defs>
+    <linearGradient id="agritech-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080a13"/><stop offset="1" stop-color="#111329"/></linearGradient>
+    <linearGradient id="agritech-accent" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#56d88a"/><stop offset="1" stop-color="#a3e635"/></linearGradient>
+    <radialGradient id="agritech-glow"><stop stop-color="#56d88a" stop-opacity=".32"/><stop offset="1" stop-color="#56d88a" stop-opacity="0"/></radialGradient>
+    <filter id="agritech-shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000" flood-opacity=".42"/></filter>
+    <pattern id="agritech-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#fff" stroke-opacity=".035"/></pattern>
+    <clipPath id="agritech-clip"><rect x="62" y="42" width="1076" height="591" rx="30"/></clipPath>
+  </defs>
+  <rect width="1200" height="675" fill="url(#agritech-bg)"/>
+  <circle cx="1035" cy="96" r="310" fill="url(#agritech-glow)"/>
+  <circle cx="92" cy="640" r="250" fill="url(#agritech-glow)" opacity=".5"/>
+  <rect width="1200" height="675" fill="url(#agritech-grid)"/>
+  <g filter="url(#agritech-shadow)"><rect x="62" y="42" width="1076" height="591" rx="30" fill="#0d101d" stroke="#56d88a" stroke-opacity=".38" stroke-width="2"/></g>
+  <g clip-path="url(#agritech-clip)">
+    <rect x="62" y="42" width="1076" height="58" fill="#151929"/>
+    <circle cx="96" cy="71" r="7" fill="#ff6b6b"/><circle cx="120" cy="71" r="7" fill="#ffd166"/><circle cx="144" cy="71" r="7" fill="#52d273"/>
+    <rect x="174" y="60" width="250" height="23" rx="11.5" fill="#22273a"/>
+    <circle cx="1096" cy="71" r="15" fill="#56d88a" fill-opacity=".16"/><path d="M1089 71h14M1096 64v14" stroke="#56d88a" stroke-width="2" stroke-linecap="round"/>
+    
+    <text x="96" y="150" fill="#56d88a" font-family="Inter,Segoe UI,sans-serif" font-size="14" font-weight="800" text-anchor="start">FARM OPERATIONS</text><text x="96" y="188" fill="#f6fff7" font-family="Inter,Segoe UI,sans-serif" font-size="29" font-weight="800" text-anchor="start">Fields, people and resources in sync</text>
+    <rect x="96" y="220" width="610" height="320" rx="22" fill="#121a25"/>
+    <path d="M126 478l108-88 126 65 116-116 200 111v58H126Z" fill="#1f4933"/><path d="M126 478l108-88 126 65 116-116 200 111" fill="none" stroke="#56d88a" stroke-width="4"/>
+    <g stroke="#7fbf5b" stroke-opacity=".45" stroke-width="2"><path d="M150 500l112-78 110 55 106-100 178 93"/><path d="M150 472l112-78 110 55 106-100 178 93"/><path d="M150 444l112-78 110 55 106-100 178 93"/><path d="M150 416l112-78 110 55 106-100 178 93"/><path d="M150 388l112-78 110 55 106-100 178 93"/></g>
+    <path d="M504 336v-74h74v74M492 262l49-49 49 49" fill="#25344a" stroke="#a3e635" stroke-width="3"/><circle cx="590" cy="270" r="12" fill="#56d88a" fill-opacity=".3"/><path d="M590 258c22-22 44 0 0 28-44-28-22-50 0-28Z" fill="#56d88a"/>
+    <rect x="744" y="220" width="360" height="320" rx="20" fill="#151b2b"/><text x="772" y="259" fill="#9ba4bd" font-family="Inter,Segoe UI,sans-serif" font-size="13" font-weight="800" text-anchor="start">VILLAGE DASHBOARD</text>
+    <rect x="772" y="282" width="304" height="44" rx="11" fill="#1c2234"/><text x="790" y="309" fill="#9ea7be" font-family="Inter,Segoe UI,sans-serif" font-size="12" font-weight="750" text-anchor="start">CROPS</text><text x="1054" y="310" fill="#edf0f7" font-family="Inter,Segoe UI,sans-serif" font-size="14" font-weight="800" text-anchor="end">12</text><rect x="772" y="339" width="304" height="44" rx="11" fill="#56d88a16"/><text x="790" y="366" fill="#9ea7be" font-family="Inter,Segoe UI,sans-serif" font-size="12" font-weight="750" text-anchor="start">TASKS</text><text x="1054" y="367" fill="#56d88a" font-family="Inter,Segoe UI,sans-serif" font-size="14" font-weight="800" text-anchor="end">08</text><rect x="772" y="396" width="304" height="44" rx="11" fill="#1c2234"/><text x="790" y="423" fill="#9ea7be" font-family="Inter,Segoe UI,sans-serif" font-size="12" font-weight="750" text-anchor="start">INVENTORY</text><text x="1054" y="424" fill="#edf0f7" font-family="Inter,Segoe UI,sans-serif" font-size="14" font-weight="800" text-anchor="end">READY</text><rect x="772" y="453" width="304" height="44" rx="11" fill="#1c2234"/><text x="790" y="480" fill="#9ea7be" font-family="Inter,Segoe UI,sans-serif" font-size="12" font-weight="750" text-anchor="start">REQUESTS</text><text x="1054" y="481" fill="#edf0f7" font-family="Inter,Segoe UI,sans-serif" font-size="14" font-weight="800" text-anchor="end">03</text>
+  </g>
+  <g transform="translate(84 604)"><rect width="178" height="24" rx="12" fill="#56d88a" fill-opacity=".12" stroke="#56d88a" stroke-opacity=".28"/><circle cx="14" cy="12" r="4" fill="#56d88a"/><text x="26" y="16" fill="#cdd2e5" font-family="Inter,Segoe UI,sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">PROJECT VISUAL</text></g>
+</svg>

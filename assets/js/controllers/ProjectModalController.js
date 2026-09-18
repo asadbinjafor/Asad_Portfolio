@@ -99,17 +99,18 @@
       img.alt = project.image_alt || project.plain_title || ''
       img.dataset.fallback = fallback
       delete img.dataset.fallbackApplied
-      img.classList.remove('project-modal__img--screenshot', 'project-modal__img--placeholder', 'is-loading', 'is-loaded')
+      img.classList.remove('project-modal__img--screenshot', 'project-modal__img--cover', 'project-modal__img--placeholder', 'is-loading', 'is-loaded')
       img.classList.add('is-loading')
       img.classList.toggle('project-modal__img--screenshot', Boolean(project.is_screenshot))
-      img.classList.toggle('project-modal__img--placeholder', !project.is_screenshot)
+      img.classList.toggle('project-modal__img--cover', Boolean(project.is_cover))
+      img.classList.toggle('project-modal__img--placeholder', !project.is_screenshot && !project.is_cover)
 
       function applyFallback() {
          if (!fallback || img.dataset.fallbackApplied === 'true') return
 
          img.dataset.fallbackApplied = 'true'
          img.src = fallback
-         img.classList.remove('project-modal__img--screenshot')
+         img.classList.remove('project-modal__img--screenshot', 'project-modal__img--cover')
          img.classList.add('project-modal__img--placeholder')
          img.classList.remove('is-loading')
          img.classList.add('is-loaded')
@@ -194,6 +195,10 @@
       projectsMap = getProjectsMap()
 
       if (!modal || !Object.keys(projectsMap).length) return
+
+      // Keep the fixed dialog relative to the viewport even when the projects
+      // section uses content-visibility containment for page performance.
+      document.body.appendChild(modal)
 
       document.querySelectorAll('.projects__slide--clickable').forEach((slide) => {
          slide.addEventListener('click', (event) => {

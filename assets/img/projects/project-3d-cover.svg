@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="graphics-title graphics-desc">
+  <title id="graphics-title">Interactive city castle and village graphics concept</title>
+  <desc id="graphics-desc">Concept cover based on verified project features</desc>
+  <defs>
+    <linearGradient id="graphics-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080a13"/><stop offset="1" stop-color="#111329"/></linearGradient>
+    <linearGradient id="graphics-accent" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+    <radialGradient id="graphics-glow"><stop stop-color="#a78bfa" stop-opacity=".32"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+    <filter id="graphics-shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000" flood-opacity=".42"/></filter>
+    <pattern id="graphics-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#fff" stroke-opacity=".035"/></pattern>
+    <clipPath id="graphics-clip"><rect x="62" y="42" width="1076" height="591" rx="30"/></clipPath>
+  </defs>
+  <rect width="1200" height="675" fill="url(#graphics-bg)"/>
+  <circle cx="1035" cy="96" r="310" fill="url(#graphics-glow)"/>
+  <circle cx="92" cy="640" r="250" fill="url(#graphics-glow)" opacity=".5"/>
+  <rect width="1200" height="675" fill="url(#graphics-grid)"/>
+  <g filter="url(#graphics-shadow)"><rect x="62" y="42" width="1076" height="591" rx="30" fill="#0d101d" stroke="#a78bfa" stroke-opacity=".38" stroke-width="2"/></g>
+  <g clip-path="url(#graphics-clip)">
+    <rect x="62" y="42" width="1076" height="58" fill="#151929"/>
+    <circle cx="96" cy="71" r="7" fill="#ff6b6b"/><circle cx="120" cy="71" r="7" fill="#ffd166"/><circle cx="144" cy="71" r="7" fill="#52d273"/>
+    <rect x="174" y="60" width="250" height="23" rx="11.5" fill="#22273a"/>
+    <circle cx="1096" cy="71" r="15" fill="#a78bfa" fill-opacity=".16"/><path d="M1089 71h14M1096 64v14" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"/>
+    
+    <rect x="62" y="100" width="1076" height="504" fill="#0b1422"/>
+    <circle cx="956" cy="194" r="58" fill="#ffd166" fill-opacity=".9"/><circle cx="956" cy="194" r="90" fill="#ffd166" fill-opacity=".08"/>
+    <path d="M62 470l190-143 130 94 190-205 194 195 135-112 237 171v134H62Z" fill="#162b3f"/><path d="M62 508l190-128 130 90 190-196 194 187 135-105 237 152" fill="none" stroke="#38bdf8" stroke-opacity=".35" stroke-width="3"/>
+    <g stroke="#bea8ff" stroke-width="3" fill="#261f42"><path d="M432 444V297h84v147M516 444V264h96v180M612 444V309h84v135"/><path d="M422 297l52-62 52 62M506 264l58-75 58 75M602 309l52-62 52 62"/><rect x="548" y="360" width="32" height="84" rx="16" fill="#0b1422"/></g>
+    <g fill="#f59e0b"><rect x="782" y="420" width="110" height="73"/><path d="M768 420l69-58 69 58Z"/><rect x="820" y="448" width="25" height="45" fill="#101929"/></g>
+    <g stroke="#a78bfa" stroke-opacity=".45" fill="none"><path d="M120 520h930M150 490h870M184 460h804"/><path d="M200 580l340-306M360 604l212-330M560 604l12-330M760 604L602 274M960 580L632 274"/></g>
+    <text x="96" y="148" fill="#38bdf8" font-family="Inter,Segoe UI,sans-serif" font-size="14" font-weight="800" text-anchor="start">INTERACTIVE WORLD</text><text x="96" y="186" fill="#f5f2ff" font-family="Inter,Segoe UI,sans-serif" font-size="30" font-weight="800" text-anchor="start">City • Castle • Village</text>
+  </g>
+  <g transform="translate(84 604)"><rect width="178" height="24" rx="12" fill="#a78bfa" fill-opacity=".12" stroke="#a78bfa" stroke-opacity=".28"/><circle cx="14" cy="12" r="4" fill="#a78bfa"/><text x="26" y="16" fill="#cdd2e5" font-family="Inter,Segoe UI,sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">PROJECT VISUAL</text></g>
+</svg>

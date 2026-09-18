@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="clothing-title clothing-desc">
+  <title id="clothing-title">Online clothing storefront concept</title>
+  <desc id="clothing-desc">Concept cover based on verified project features</desc>
+  <defs>
+    <linearGradient id="clothing-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080a13"/><stop offset="1" stop-color="#111329"/></linearGradient>
+    <linearGradient id="clothing-accent" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fb7185"/><stop offset="1" stop-color="#c084fc"/></linearGradient>
+    <radialGradient id="clothing-glow"><stop stop-color="#fb7185" stop-opacity=".32"/><stop offset="1" stop-color="#fb7185" stop-opacity="0"/></radialGradient>
+    <filter id="clothing-shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000" flood-opacity=".42"/></filter>
+    <pattern id="clothing-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#fff" stroke-opacity=".035"/></pattern>
+    <clipPath id="clothing-clip"><rect x="62" y="42" width="1076" height="591" rx="30"/></clipPath>
+  </defs>
+  <rect width="1200" height="675" fill="url(#clothing-bg)"/>
+  <circle cx="1035" cy="96" r="310" fill="url(#clothing-glow)"/>
+  <circle cx="92" cy="640" r="250" fill="url(#clothing-glow)" opacity=".5"/>
+  <rect width="1200" height="675" fill="url(#clothing-grid)"/>
+  <g filter="url(#clothing-shadow)"><rect x="62" y="42" width="1076" height="591" rx="30" fill="#0d101d" stroke="#fb7185" stroke-opacity=".38" stroke-width="2"/></g>
+  <g clip-path="url(#clothing-clip)">
+    <rect x="62" y="42" width="1076" height="58" fill="#151929"/>
+    <circle cx="96" cy="71" r="7" fill="#ff6b6b"/><circle cx="120" cy="71" r="7" fill="#ffd166"/><circle cx="144" cy="71" r="7" fill="#52d273"/>
+    <rect x="174" y="60" width="250" height="23" rx="11.5" fill="#22273a"/>
+    <circle cx="1096" cy="71" r="15" fill="#fb7185" fill-opacity=".16"/><path d="M1089 71h14M1096 64v14" stroke="#fb7185" stroke-width="2" stroke-linecap="round"/>
+    
+    <text x="96" y="150" fill="#fb7185" font-family="Inter,Segoe UI,sans-serif" font-size="14" font-weight="800" text-anchor="start">NEW SEASON</text><text x="96" y="188" fill="#fff7fb" font-family="Inter,Segoe UI,sans-serif" font-size="30" font-weight="800" text-anchor="start">Style for every side of you</text>
+    <g><rect x="96" y="228" width="206" height="290" rx="18" fill="#171b2b"/><path d="M166 270l34-20 34 20 38 22-24 52-18-9v127H74V335l-18 9-24-52Z" transform="translate(48 0)" fill="#fb7185" fill-opacity=".18" stroke="#fb7185" stroke-width="3"/><circle cx="199" cy="296" r="26" fill="#0c101c"/><rect x="120" y="476" width="102" height="9" rx="4" fill="#505972"/><rect x="120" y="495" width="66" height="7" rx="3.5" fill="#30374c"/><rect x="336" y="228" width="206" height="290" rx="18" fill="#171b2b"/><path d="M406 270l34-20 34 20 38 22-24 52-18-9v127H74V335l-18 9-24-52Z" transform="translate(288 0)" fill="#c084fc" fill-opacity=".18" stroke="#c084fc" stroke-width="3"/><circle cx="439" cy="296" r="26" fill="#0c101c"/><rect x="360" y="476" width="102" height="9" rx="4" fill="#505972"/><rect x="360" y="495" width="66" height="7" rx="3.5" fill="#30374c"/><rect x="576" y="228" width="206" height="290" rx="18" fill="#171b2b"/><path d="M646 270l34-20 34 20 38 22-24 52-18-9v127H74V335l-18 9-24-52Z" transform="translate(528 0)" fill="#60a5fa" fill-opacity=".18" stroke="#60a5fa" stroke-width="3"/><circle cx="679" cy="296" r="26" fill="#0c101c"/><rect x="600" y="476" width="102" height="9" rx="4" fill="#505972"/><rect x="600" y="495" width="66" height="7" rx="3.5" fill="#30374c"/></g>
+    <rect x="838" y="202" width="266" height="316" rx="20" fill="#151a2a"/><text x="866" y="241" fill="#9ba4bd" font-family="Inter,Segoe UI,sans-serif" font-size="13" font-weight="800" text-anchor="start">YOUR CART</text>
+    <rect x="866" y="264" width="210" height="48" rx="11" fill="#1c2235"/><rect x="882" y="276" width="24" height="24" rx="6" fill="#fb7185" fill-opacity=".35"/><text x="920" y="294" fill="#e9ebf3" font-family="Inter,Segoe UI,sans-serif" font-size="13" font-weight="700" text-anchor="start">Essential Tee</text><rect x="866" y="327" width="210" height="48" rx="11" fill="#1c2235"/><rect x="882" y="276" width="24" height="24" rx="6" fill="#c084fc" fill-opacity=".35"/><text x="920" y="357" fill="#e9ebf3" font-family="Inter,Segoe UI,sans-serif" font-size="13" font-weight="700" text-anchor="start">Night Jacket</text><rect x="866" y="390" width="210" height="48" rx="11" fill="#1c2235"/><rect x="882" y="276" width="24" height="24" rx="6" fill="#60a5fa" fill-opacity=".35"/><text x="920" y="420" fill="#e9ebf3" font-family="Inter,Segoe UI,sans-serif" font-size="13" font-weight="700" text-anchor="start">Everyday Fit</text>
+    <rect x="866" y="468" width="210" height="36" rx="10" fill="#fb718525"/><text x="971" y="492" fill="#fb7185" font-family="Inter,Segoe UI,sans-serif" font-size="12" font-weight="800" text-anchor="middle">CHECKOUT</text>
+  </g>
+  <g transform="translate(84 604)"><rect width="178" height="24" rx="12" fill="#fb7185" fill-opacity=".12" stroke="#fb7185" stroke-opacity=".28"/><circle cx="14" cy="12" r="4" fill="#fb7185"/><text x="26" y="16" fill="#cdd2e5" font-family="Inter,Segoe UI,sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">PROJECT VISUAL</text></g>
+</svg>
