@@ -1,5 +1,5 @@
 /**
- * Contact form — EmailJS (preferred) or FormSubmit fallback for GitHub Pages.
+ * Contact form — EmailJS (preferred) or FormSubmit fallback for hosted sites.
  */
 (function () {
    'use strict'
@@ -16,7 +16,7 @@
       const serviceId = contactForm.dataset.emailjsServiceId || ''
       const templateId = contactForm.dataset.emailjsTemplateId || ''
       const formsubmitEnabled = contactForm.dataset.formsubmitEnabled !== 'false'
-      const siteUrl = contactForm.dataset.siteUrl || window.location.origin + window.location.pathname
+      const siteUrl = window.location.origin + window.location.pathname
       const defaultLabel = contactSubmit.dataset.defaultLabel || contactSubmit.textContent.trim()
       const isLocalFile = window.location.protocol === 'file:'
 
@@ -40,11 +40,11 @@
          notConfigured:
             'Contact form is not configured yet. Please use Copy email or the Email card.',
          localFile:
-            'Form cannot send from a saved HTML file. Open via http://localhost or your live GitHub Pages URL.',
+            'Form cannot send from a saved HTML file. Open via http://localhost or the live website.',
          sendFailed: 'Could not send your message. Please try again or email directly.',
          success: 'Message sent successfully. Thank you!',
          activation:
-            `Almost done! Check ${recipient} (and spam) for a FormSubmit activation link. Click it once, then submit again.`,
+            `The form owner must activate this form. Check ${recipient} (including Spam) for the latest FormSubmit activation email; the sender email entered above will not receive it. If the latest link is invalid, contact FormSubmit support.`,
       }
 
       function isValidEmail(value) {
@@ -152,21 +152,18 @@
          return { name, email, message }
       }
 
-      function parseFormSubmitResponse(data) {
-         const successValue = data?.success
+      function parseFormSubmitResponse(response, data) {
          const responseMessage = typeof data?.message === 'string' ? data.message.trim() : ''
+         const needsActivation = /needs?\s+activat|requires?\s+activat|not\s+activat|activate\s+form|activation\s+link|confirmation\s+link|confirm\s+your\s+form/i.test(responseMessage)
 
-         if (successValue === false || successValue === 'false') {
-            throw new Error(responseMessage || messages.sendFailed)
+         if (needsActivation) return { needsActivation: true }
+
+         const successValue = data?.success
+         if (!response.ok || (successValue !== true && successValue !== 'true')) {
+            throw new Error('send-failed')
          }
 
-         const combined = `${responseMessage} ${successValue || ''}`.toLowerCase()
-         const needsActivation = /activat|confirm|subscription|subscribe/.test(combined)
-
-         return {
-            needsActivation,
-            message: responseMessage,
-         }
+         return { needsActivation: false }
       }
 
       async function sendViaEmailJs(payload) {
@@ -208,13 +205,8 @@
             }),
          })
 
-         const data = await response.json().catch(() => ({}))
-
-         if (!response.ok) {
-            throw new Error(data.message || messages.sendFailed)
-         }
-
-         return parseFormSubmitResponse(data)
+         const data = await response.json().catch(() => null)
+         return parseFormSubmitResponse(response, data)
       }
 
       async function sendMessage(payload) {
@@ -265,7 +257,7 @@
             if (error?.message === 'not-configured') {
                setStatus(messages.notConfigured, 'is-error')
             } else {
-               setStatus(error?.message || messages.sendFailed, 'is-error')
+               setStatus(error?.message === messages.localFile ? messages.localFile : messages.sendFailed, 'is-error')
             }
          } finally {
             setLoading(false)
