@@ -175,7 +175,7 @@ body {
   pointer-events: none;
   opacity: .4;
   filter: brightness(1.12) contrast(1.06) saturate(1.08);
-  background: url('../img/scroll-background/desktop/frame-001.webp?v=1') center / cover no-repeat;
+  background: url('../img/scroll-background/sequence-v2/frame-001.jpg') center / cover no-repeat;
 }
 
 [data-theme="light"] .scroll-background {
@@ -188,7 +188,6 @@ body {
 @media (max-width: 767px) {
   .scroll-background {
     opacity: .34;
-    background-image: url('../img/scroll-background/mobile/frame-001.webp?v=1');
   }
 
   [data-theme="light"] .scroll-background {
@@ -3520,10 +3519,6 @@ body.project-modal-open {
   background-color: var(--first-color);
 }
 
-.section:not(#home) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 720px;
-}
 
 @media (prefers-reduced-motion: reduce) {
   html {
