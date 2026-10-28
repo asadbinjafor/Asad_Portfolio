@@ -1,0 +1,108 @@
+/* Small, static glass accents. Only navigation and FAQ surfaces are styled here. */
+:root {
+  --liquid-header: rgba(16, 15, 23, .94);
+  --liquid-control: rgba(37, 31, 54, .94);
+  --liquid-edge: rgba(216, 204, 255, .24);
+  --liquid-shine: rgba(255, 255, 255, .12);
+  --liquid-tint: rgba(167, 139, 250, .07);
+  --liquid-launcher: rgba(109, 40, 217, .97);
+  --liquid-shadow: rgba(0, 0, 0, .16);
+}
+
+[data-theme="light"] {
+  --liquid-header: rgba(250, 249, 255, .96);
+  --liquid-control: rgba(247, 244, 255, .96);
+  --liquid-edge: rgba(109, 77, 173, .22);
+  --liquid-shine: rgba(255, 255, 255, .85);
+  --liquid-tint: rgba(139, 92, 246, .06);
+  --liquid-shadow: rgba(41, 28, 69, .08);
+}
+
+:root .header {
+  background: linear-gradient(115deg, var(--liquid-shine), transparent 44%, var(--liquid-tint)), var(--liquid-header);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: inset 0 1px 0 var(--liquid-shine), inset 0 -1px 0 var(--liquid-edge), 0 3px 14px var(--liquid-shadow);
+}
+
+:root .header .nav__theme {
+  background: linear-gradient(135deg, var(--liquid-shine), transparent 46%, var(--liquid-tint)), var(--liquid-control);
+  border-color: var(--liquid-edge);
+  box-shadow: inset 0 1px 0 var(--liquid-shine), inset 0 -1px 0 rgba(139, 92, 246, .08), 0 2px 8px var(--liquid-shadow);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* The header supplies desktop blur; individual controls need no nested filters. */
+:root .header .nav__link {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+@media (min-width: 1024px) {
+  :root .header .nav__link {
+    background-image: linear-gradient(135deg, var(--liquid-tint), transparent 65%);
+    box-shadow: inset 0 1px 0 var(--liquid-shine);
+  }
+}
+
+.faq-chat .faq-chat__launcher {
+  background: linear-gradient(135deg, rgba(255, 255, 255, .19), transparent 48%, rgba(196, 181, 253, .09)), var(--liquid-launcher);
+  border-color: rgba(221, 214, 254, .42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), inset 0 -1px 0 rgba(76, 29, 149, .2), 0 4px 16px var(--liquid-shadow);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.faq-chat .faq-chat__panel {
+  border-color: var(--liquid-edge);
+  box-shadow: inset 0 1px 0 var(--liquid-shine), 0 12px 40px var(--liquid-shadow);
+}
+
+.faq-chat .faq-chat__header {
+  background: linear-gradient(120deg, var(--liquid-shine), transparent 52%, var(--liquid-tint)), var(--container-color);
+  border-bottom-color: var(--liquid-edge);
+  box-shadow: inset 0 1px 0 var(--liquid-shine);
+}
+
+/* Desktop only: two small, fixed blur surfaces. Phones/tablets use static tints,
+   even in landscape; there are no animated filters or pointer/scroll handlers. */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  @media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+    :root .header {
+      --liquid-header: rgba(16, 15, 23, .76);
+      -webkit-backdrop-filter: blur(8px) saturate(120%);
+      backdrop-filter: blur(8px) saturate(120%);
+    }
+
+    [data-theme="light"] .header {
+      --liquid-header: rgba(250, 249, 255, .82);
+    }
+
+    .faq-chat .faq-chat__launcher {
+      --liquid-launcher: rgba(109, 40, 217, .89);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+  }
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  :root .header {
+    background: var(--container-color);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  :root .header .nav__theme,
+  .faq-chat .faq-chat__header {
+    background: var(--container-color);
+    border-color: var(--text-color-light);
+  }
+
+  .faq-chat .faq-chat__launcher {
+    background: #6d28d9;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
