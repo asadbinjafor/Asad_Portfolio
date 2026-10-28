@@ -42,6 +42,7 @@
          localFile:
             'Form cannot send from a saved HTML file. Open via http://localhost or the live website.',
          sendFailed: 'Could not send your message. Please try again or email directly.',
+         unconfirmed: 'The email service did not return a confirmation. Your message may already have arrived. Please check before sending again, or email directly.',
          success: 'Message sent successfully. Thank you!',
          activation:
             `The form owner must activate this form. Check ${recipient} (including Spam) for the latest FormSubmit activation email; the sender email entered above will not receive it. If the latest link is invalid, contact FormSubmit support.`,
@@ -159,8 +160,16 @@
          if (needsActivation) return { needsActivation: true }
 
          const successValue = data?.success
-         if (!response.ok || (successValue !== true && successValue !== 'true')) {
-            throw new Error('send-failed')
+         if (!response.ok || successValue === false || successValue === 'false') {
+            const error = new Error(responseMessage || messages.sendFailed)
+            error.isFormSubmitResponse = true
+            throw error
+         }
+
+         if (successValue !== true && successValue !== 'true') {
+            const error = new Error(messages.unconfirmed)
+            error.deliveryUnconfirmed = true
+            throw error
          }
 
          return { needsActivation: false }
@@ -191,10 +200,10 @@
          const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`, {
             method: 'POST',
             headers: {
-               'Content-Type': 'application/json',
                Accept: 'application/json',
             },
-            body: JSON.stringify({
+            // A standard form body avoids a cross-origin JSON preflight request.
+            body: new URLSearchParams({
                name: payload.name,
                email: payload.email,
                message: payload.message,
@@ -256,6 +265,10 @@
          } catch (error) {
             if (error?.message === 'not-configured') {
                setStatus(messages.notConfigured, 'is-error')
+            } else if (error?.isFormSubmitResponse) {
+               setStatus(error.message, 'is-error')
+            } else if (error?.deliveryUnconfirmed || error?.name === 'TypeError') {
+               setStatus(messages.unconfirmed, 'is-info')
             } else {
                setStatus(error?.message === messages.localFile ? messages.localFile : messages.sendFailed, 'is-error')
             }
