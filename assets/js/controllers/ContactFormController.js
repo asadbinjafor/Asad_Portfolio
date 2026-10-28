@@ -4,6 +4,8 @@
 (function () {
    'use strict'
 
+   const SEND_TIMEOUT_MS = 15000
+
    function init() {
       const contactForm = document.getElementById('contact-form')
       const contactFormStatus = document.getElementById('contact-form-status')
@@ -42,6 +44,7 @@
          localFile:
             'Form cannot send from a saved HTML file. Open via http://localhost or the live website.',
          sendFailed: 'Could not send your message. Please try again or email directly.',
+         timeout: 'The email service is taking too long. Delivery could not be confirmed. Your message is still here; please email me directly.',
          success: 'Message sent successfully. Thank you!',
          activation:
             `The form owner must activate this form. Check ${recipient} (including Spam) for the latest FormSubmit activation email; the sender email entered above will not receive it. If the latest link is invalid, contact FormSubmit support.`,
@@ -188,25 +191,39 @@
             throw new Error(messages.localFile)
          }
 
-         const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`, {
-            method: 'POST',
-            headers: {
-               'Content-Type': 'application/json',
-               Accept: 'application/json',
-            },
-            body: JSON.stringify({
-               name: payload.name,
-               email: payload.email,
-               message: payload.message,
-               _subject: `Portfolio contact from ${payload.name}`,
-               _template: 'table',
-               _captcha: 'false',
-               _url: siteUrl,
-            }),
-         })
+         const controller = new AbortController()
+         const timeoutId = window.setTimeout(() => controller.abort(), SEND_TIMEOUT_MS)
 
-         const data = await response.json().catch(() => null)
-         return parseFormSubmitResponse(response, data)
+         try {
+            const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`, {
+               signal: controller.signal,
+               method: 'POST',
+               headers: {
+                  'Content-Type': 'application/json',
+                  Accept: 'application/json',
+               },
+               body: JSON.stringify({
+                  name: payload.name,
+                  email: payload.email,
+                  message: payload.message,
+                  _subject: `Portfolio contact from ${payload.name}`,
+                  _template: 'table',
+                  _captcha: 'false',
+                  _url: siteUrl,
+               }),
+            })
+
+            const data = await response.json().catch((error) => {
+               if (controller.signal.aborted) throw error
+               return null
+            })
+            return parseFormSubmitResponse(response, data)
+         } catch (error) {
+            if (controller.signal.aborted) throw new Error('send-timeout')
+            throw error
+         } finally {
+            window.clearTimeout(timeoutId)
+         }
       }
 
       async function sendMessage(payload) {
@@ -226,6 +243,7 @@
 
       contactForm.addEventListener('submit', async (event) => {
          event.preventDefault()
+         if (contactSubmit.disabled) return
 
          const payload = validateForm()
          if (!payload) return
@@ -256,6 +274,8 @@
          } catch (error) {
             if (error?.message === 'not-configured') {
                setStatus(messages.notConfigured, 'is-error')
+            } else if (error?.message === 'send-timeout') {
+               setStatus(messages.timeout, 'is-error')
             } else {
                setStatus(error?.message === messages.localFile ? messages.localFile : messages.sendFailed, 'is-error')
             }
