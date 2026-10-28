@@ -51,6 +51,7 @@
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
    <link rel="stylesheet" href="assets/css/styles.css?v=91">
+   <link rel="stylesheet" href="assets/css/faq-chatbot.css?v=1">
    <script>
       (function () {
          var stored = localStorage.getItem('asad-portfolio-theme');
@@ -3719,6 +3720,38 @@
    </div>
 </footer>
 
+   <!-- Local FAQ only: no AI service, tracking, or message submission. -->
+   <aside class="faq-chat" id="faq-chat" aria-label="Portfolio FAQ" hidden>
+      <button class="faq-chat__launcher" id="faq-launcher" type="button" aria-expanded="false" aria-controls="faq-panel" aria-label="Open portfolio FAQ">
+         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-2 2V11.5a9.5 9.5 0 0 1 19 0Z"/><path d="M8 9h8M8 13h5"/></svg>
+         <span>FAQ</span>
+      </button>
+      <div class="faq-chat__panel" id="faq-panel" role="dialog" aria-labelledby="faq-title" aria-describedby="faq-description" hidden>
+         <header class="faq-chat__header">
+            <div>
+               <h2 id="faq-title">Portfolio FAQ</h2>
+               <p id="faq-description">Quick answers from this portfolio</p>
+            </div>
+            <button class="faq-chat__close" id="faq-close" type="button" aria-label="Close portfolio FAQ">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+            </button>
+         </header>
+         <div class="faq-chat__messages" id="faq-messages" role="log" aria-label="FAQ conversation" aria-live="polite" aria-relevant="additions" tabindex="0"></div>
+         <div class="faq-chat__topics" id="faq-topics" role="group" aria-label="Suggested questions"></div>
+         <form class="faq-chat__form" id="faq-form">
+            <label class="faq-chat__label" for="faq-question">Ask a portfolio question</label>
+            <div class="faq-chat__composer">
+               <input id="faq-question" class="faq-chat__input" type="text" name="question" maxlength="300" placeholder="Ask about skills, projects, CV..." autocomplete="off" enterkeyhint="send" required>
+               <button class="faq-chat__send" type="submit" aria-label="Send FAQ question">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3 3 19 9-19 9 4-9-4-9Zm4 9h15"/></svg>
+               </button>
+            </div>
+            <p class="faq-chat__note">Preset answers · No messages are sent or saved</p>
+         </form>
+      </div>
+   </aside>
+
+   <script defer src="assets/js/controllers/FAQChatbotController.js?v=1"></script>
    <script defer src="assets/js/controllers/ThemeController.js?v=3"></script>
    <script defer src="assets/js/controllers/ScrollBackgroundController.js?v=6"></script>
    <script defer src="assets/js/controllers/ContactCopyController.js?v=45"></script>
