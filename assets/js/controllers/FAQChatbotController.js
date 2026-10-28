@@ -110,6 +110,9 @@
       let best = null
       let bestScore = 0
       for (const faq of faqs) {
+         // A person's name must not outweigh a specific topic such as "CV".
+         // Use identity keywords only after the other topics have been considered.
+         if (faq.id === 'about') continue
          const score = faq.keywords.reduce((total, keyword) => total + (contains(query, keyword) ? normalize(keyword).length : 0), 0)
          if (score > bestScore) {
             best = faq
@@ -117,6 +120,8 @@
          }
       }
       if (best) return best
+      const about = faqs.find((faq) => faq.id === 'about')
+      if (about.keywords.some((keyword) => contains(query, keyword))) return about
       if (['hi', 'hello', 'hey', 'হ্যালো', 'সালাম', 'help', 'সাহায্য', 'thanks', 'thank you'].some((word) => contains(query, word))) {
          return { answer: 'Hello! I can help you find Asad\'s skills, projects, education, achievements, CV and contact details. Choose a topic below or type a portfolio question.' }
       }

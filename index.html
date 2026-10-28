@@ -50,13 +50,21 @@
    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-   <link rel="stylesheet" href="assets/css/styles.css?v=91">
+   <link rel="stylesheet" href="assets/css/styles.css?v=92">
    <link rel="stylesheet" href="assets/css/faq-chatbot.css?v=1">
    <script>
       (function () {
          var stored = localStorage.getItem('asad-portfolio-theme');
          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
          document.documentElement.setAttribute('data-theme', theme);
+         if (theme === 'dark') {
+            var poster = document.createElement('link');
+            poster.rel = 'preload';
+            poster.as = 'image';
+            poster.href = 'assets/img/scroll-background/sequence-v2/frame-001.jpg';
+            poster.setAttribute('fetchpriority', 'high');
+            document.head.appendChild(poster);
+         }
       })();
    </script>
    <script>
@@ -3751,16 +3759,16 @@
       </div>
    </aside>
 
-   <script defer src="assets/js/controllers/FAQChatbotController.js?v=1"></script>
+   <script defer src="assets/js/controllers/FAQChatbotController.js?v=2"></script>
    <script defer src="assets/js/controllers/ThemeController.js?v=3"></script>
-   <script defer src="assets/js/controllers/ScrollBackgroundController.js?v=6"></script>
+   <script defer src="assets/js/controllers/ScrollBackgroundController.js?v=7"></script>
    <script defer src="assets/js/controllers/ContactCopyController.js?v=45"></script>
-   <script defer src="assets/js/controllers/AppController.js?v=51"></script>
+   <script defer src="assets/js/controllers/AppController.js?v=52"></script>
    <script defer src="assets/js/controllers/JourneyController.js?v=14"></script>
-   <script defer src="assets/js/controllers/HomeTypingController.js?v=2"></script>
+   <script defer src="assets/js/controllers/HomeTypingController.js?v=3"></script>
    <script defer src="assets/js/controllers/ProjectsController.js?v=7"></script>
    <script defer src="assets/js/controllers/ProjectModalController.js?v=6"></script>
-   <script defer src="assets/js/controllers/ServicesController.js?v=1"></script>
+   <script defer src="assets/js/controllers/ServicesController.js?v=2"></script>
    <script defer src="assets/js/controllers/TechnologiesController.js?v=4"></script>
    <script defer src="assets/js/controllers/AchievementsController.js?v=4"></script>
       <script defer src="assets/js/controllers/ContactFormController.js?v=48"></script>

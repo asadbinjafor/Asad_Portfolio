@@ -176,6 +176,8 @@ body {
   opacity: .4;
   filter: brightness(1.12) contrast(1.06) saturate(1.08);
   background: url('../img/scroll-background/sequence-v2/frame-001.jpg') center / cover no-repeat;
+  contain: strict;
+  transform: translateZ(0);
 }
 
 [data-theme="light"] .scroll-background {
@@ -188,6 +190,8 @@ body {
 @media (max-width: 767px) {
   .scroll-background {
     opacity: .34;
+    /* Browser toolbar motion must not repeatedly reallocate the canvas. */
+    height: 100lvh;
   }
 
   [data-theme="light"] .scroll-background {
@@ -637,6 +641,11 @@ img {
     position: relative;
     z-index: calc(var(--z-fixed) + 20);
   }
+
+  /* Put the menu's close button above the header action buttons. */
+  .nav__menu.show-menu {
+    z-index: calc(var(--z-fixed) + 25);
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -925,6 +934,11 @@ img {
   left: -30px;
   opacity: .3;
   animation: float-glow 8s ease-in-out infinite reverse;
+}
+
+.home--paused .home__blob,
+.home--paused .home__shape {
+  animation-play-state: paused;
 }
 
 @keyframes float-glow {

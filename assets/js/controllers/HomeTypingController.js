@@ -31,6 +31,8 @@
    let charIndex = 0
    let isDeleting = false
    let timerId = null
+   let homeVisible = true
+   const home = document.getElementById('home')
 
    const TYPE_SPEED = 72
    const DELETE_SPEED = 38
@@ -50,10 +52,14 @@
 
    function schedule(nextDelay) {
       window.clearTimeout(timerId)
+      timerId = null
+      if (document.hidden || !homeVisible) return
       timerId = window.setTimeout(tick, nextDelay)
    }
 
    function tick() {
+      timerId = null
+      if (document.hidden || !homeVisible) return
       const currentWord = words[wordIndex]
       let delay = TYPE_SPEED
 
@@ -90,6 +96,20 @@
 
       schedule(PAUSE_AFTER_DELETE)
    })
+
+   // Offscreen typing and glow animations should not keep repainting the page
+   // while a mobile visitor reads later sections.
+   if (home && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(([entry]) => {
+         homeVisible = entry.isIntersecting
+         home.classList.toggle('home--paused', !homeVisible)
+         if (!homeVisible) {
+            window.clearTimeout(timerId)
+            timerId = null
+         } else if (timerId === null) schedule(PAUSE_AFTER_DELETE)
+      })
+      observer.observe(home)
+   }
 
    tick()
 })()

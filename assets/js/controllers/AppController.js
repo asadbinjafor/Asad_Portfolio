@@ -61,24 +61,33 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 })
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-const sections = document.querySelectorAll('section[id]')
+const sections = Array.from(document.querySelectorAll('main > section[id]')).map((section) => ({
+   section,
+   link: document.querySelector(`.nav__link[href="#${section.id}"]`),
+   top: 0,
+   bottom: 0,
+}))
+let sectionMetricsDirty = true
+let scrollOffset = getScrollOffset()
+
+function measureSections() {
+   scrollOffset = getScrollOffset()
+   const y = window.pageYOffset
+   sections.forEach((entry) => {
+      const rect = entry.section.getBoundingClientRect()
+      entry.top = rect.top + y - scrollOffset
+      entry.bottom = entry.top + rect.height
+   })
+   sectionMetricsDirty = false
+}
 
 
 function scrollActive() {
    const scrollY = window.pageYOffset
-   const offset = getScrollOffset()
+   if (sectionMetricsDirty) measureSections()
 
-   sections.forEach((section) => {
-      const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - offset
-      const sectionId = section.getAttribute('id')
-      const link = document.querySelector(`.nav__link[href*="${sectionId}"]`)
-
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-         link?.classList.add('active-link')
-      } else {
-         link?.classList.remove('active-link')
-      }
+   sections.forEach((entry) => {
+      entry.link?.classList.toggle('active-link', scrollY >= entry.top && scrollY < entry.bottom)
    })
 }
 
@@ -110,6 +119,14 @@ function queueScrollTasks() {
 }
 
 window.addEventListener('scroll', queueScrollTasks, { passive: true })
-window.addEventListener('resize', queueScrollTasks, { passive: true })
-window.addEventListener('load', queueScrollTasks)
+function invalidateSectionMetrics() {
+   sectionMetricsDirty = true
+   queueScrollTasks()
+}
+window.addEventListener('resize', invalidateSectionMetrics, { passive: true })
+window.addEventListener('load', invalidateSectionMetrics)
+const sectionSizeObserver = new ResizeObserver(invalidateSectionMetrics)
+sections.forEach(({ section }) => sectionSizeObserver.observe(section))
+sectionSizeObserver.observe(document.body)
+document.fonts?.ready.then(invalidateSectionMetrics)
 queueScrollTasks()
